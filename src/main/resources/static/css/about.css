@@ -1,0 +1,40 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+ul {
+  list-style: none;
+}
+
+ol {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+.about {
+  font-size: 20px;
+  color: #666;
+  text-align: left;
+}
+.about p {
+  margin: 20px 0;
+  text-indent: 2em;
+  line-height: 2;
+}
+.about address {
+  font-style: normal;
+  margin: 40px 0 0;
+  line-height: 1.6;
+}
+.about address ul {
+  margin: 20px 0 0;
+}
+.about address li {
+  text-decoration: normal;
+}
+
+/*# sourceMappingURL=about.css.map */

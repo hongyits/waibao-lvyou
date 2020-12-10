@@ -1,0 +1,134 @@
+@charset "UTF-8";
+* {
+  margin: 0;
+  padding: 0;
+}
+
+ul {
+  list-style: none;
+}
+
+ol {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+.ticket {
+  color: #666;
+  text-align: left;
+}
+.ticket .field {
+  font-size: 20px;
+  border: medium none;
+}
+.ticket .field p {
+  line-height: 3;
+}
+.ticket .field p input {
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  color: #999;
+  padding: 5px;
+  width: 250px;
+  height: 30px;
+  margin: 0 0 0 24px;
+  font-size: 20px;
+}
+.ticket .type {
+  font-size: 20px;
+}
+.ticket .type mark {
+  background: #458b00;
+  padding: 5px 8px;
+  color: #fff;
+  border-radius: 4px;
+  margin: 0 8px 0 16px;
+}
+.ticket .left {
+  display: inline-block;
+  width: 43%;
+}
+.ticket .right {
+  display: inline-block;
+  width: 43%;
+  margin: 0 0 0 20px;
+}
+.ticket .button {
+  display: inline-block;
+  float: right;
+  width: 9%;
+  position: relative;
+}
+.ticket .button .submit {
+  background: #f60;
+  color: #fff;
+  width: 90px;
+  height: 90px;
+  line-height: 90px;
+  border-style: none;
+  border-radius: 4px;
+  font-size: 20px;
+  position: absolute;
+  top: 14px;
+  right: 15px;
+  cursor: pointer;
+}
+.ticket .new {
+  font-size: 20px;
+  margin: 20px 0 0;
+  /*table单元格td的样式*/
+}
+.ticket .new ul {
+  margin: 20px 0 0;
+}
+.ticket .new li {
+  display: inline-block;
+  padding: 5px 10px;
+}
+.ticket .new li:first-child {
+  padding-left: 0;
+}
+.ticket .new li:nth-child(2) {
+  background-color: #458b00;
+  color: #fff;
+  border-radius: 4px;
+}
+.ticket .new table thead tr th, .ticket .new table tbody tr td, .ticket .new table .tbf tr td {
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+}
+.ticket .new table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid #ddd;
+  margin: 20px 0 0;
+}
+.ticket .new table .tb tr:hover {
+  background: #eee;
+}
+.ticket .new table tbody tr td .price {
+  color: #f60;
+}
+.ticket .new table tbody tr td .reserve {
+  width: 80px;
+  height: 35px;
+  line-height: 35px;
+  background: #f60;
+  border-radius: 4px;
+  display: inline-block;
+  color: #fff;
+}
+.ticket .new table .tbf tr {
+  cursor: pointer;
+}
+.ticket .new table .tbf tr td .more2 {
+  color: #666;
+}
+
+/*# sourceMappingURL=ticket.css.map */

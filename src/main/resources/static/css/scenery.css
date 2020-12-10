@@ -1,0 +1,33 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+ul {
+  list-style: none;
+}
+
+ol {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+.scenery figure {
+  padding: 4px;
+  border: 1px solid #ddd;
+  display: inline-block;
+  width: 435px;
+  margin: 10px 7px 10px 0;
+  border-radius: 4px;
+}
+.scenery figure figcaption {
+  font-size: 20px;
+  text-align: center;
+  color: #666;
+  padding: 5px 0;
+}
+
+/*# sourceMappingURL=scenery.css.map */

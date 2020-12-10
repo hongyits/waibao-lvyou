@@ -1,0 +1,186 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+ul {
+  list-style: none;
+}
+
+ol {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+.infomation .infor {
+  height: 45px;
+  line-height: 45px;
+  background: #eee;
+  border: 1px solid #eee;
+  margin-bottom: 20px;
+}
+.infomation .infor ul li {
+  display: inline-block;
+  height: 43px;
+  line-height: 43px;
+  text-align: center;
+}
+.infomation .infor .left {
+  float: left;
+}
+.infomation .infor .left li {
+  width: 150px;
+}
+.infomation .infor .left li:first-child {
+  background: #fff;
+  border-top: 2px solid #448900;
+}
+.infomation .infor .left li:hover {
+  background: #fff;
+  border-top: 2px solid #448900;
+}
+.infomation .infor .left li a {
+  display: block;
+  color: #666;
+  font-size: 18px;
+}
+.infomation .infor .right {
+  float: right;
+  height: 45px;
+  line-height: 45px;
+  margin: 0 20px 0;
+}
+.infomation .infor .right li {
+  padding: 3px 8px;
+}
+.infomation .infor .right li a {
+  color: #666;
+  padding: 5px;
+  font-size: 16px;
+}
+.infomation .infor .right li a:hover {
+  background: #448900;
+  color: #fff;
+}
+.infomation .infor .right li a.selected {
+  background: #448900;
+  color: #fff;
+}
+.infomation figure {
+  border: 1px solid #eee;
+  margin: 0 0 20px;
+  position: relative;
+  height: 230px;
+}
+.infomation figure img {
+  float: left;
+}
+.infomation figcaption {
+  float: right;
+  margin: 10px 230px 0 0;
+  text-align: left;
+  width: 280px;
+}
+.infomation figcaption header h2 {
+  font-size: 24px;
+  color: #333;
+  margin: 10px 0;
+  font-weight: normal;
+}
+.infomation figcaption header h3 {
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 10px;
+  font-weight: normal;
+}
+.infomation figcaption ol {
+  margin-top: -5px;
+}
+.infomation figcaption ol li {
+  line-height: 2;
+  color: #666;
+}
+.infomation figcaption ol mark {
+  color: #448900;
+  border-radius: 2px;
+  border: 1px solid #448900;
+  padding: 0 5px;
+  background: #fff;
+}
+.infomation figcaption .buy {
+  position: absolute;
+  top: 75px;
+  right: 50px;
+}
+.infomation figcaption .buy .price {
+  color: #ff6600;
+  font-size: 20px;
+}
+.infomation figcaption .buy .price strong {
+  font-size: 36px;
+  font-weight: bold;
+}
+.infomation figcaption .buy .price s {
+  font-size: 16px;
+  color: #999;
+}
+.infomation figcaption .buy .reserve a {
+  background: #ff6600 none repeat scroll 0 0;
+  border-radius: 5px;
+  color: #fff;
+  display: inline-block;
+  font-size: 20px;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  width: 152px;
+}
+.infomation figcaption .type {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: #448900;
+  color: #fff;
+  width: 90px;
+  height: 25px;
+  line-height: 25px;
+  border-radius: 0 0 5px 0;
+  text-align: center;
+  font-size: 14px;
+}
+.infomation figcaption .disc {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: url("../img/disc.png") no-repeat scroll;
+  display: block;
+  height: 52px;
+  width: 52px;
+}
+.infomation figcaption .disc span {
+  color: #ff837d;
+  transform: rotate(45deg);
+  font-size: 14px;
+  display: block;
+  text-indent: 17px;
+}
+.infomation figcaption footer {
+  background-color: #fafafa;
+  bottom: 0;
+  color: #666;
+  height: 35px;
+  letter-spacing: 1px;
+  line-height: 35px;
+  margin-left: -15px;
+  position: absolute;
+  text-indent: 15px;
+  width: 525px;
+}
+.infomation figcaption footer time {
+  color: #448900;
+}
+
+/*# sourceMappingURL=info.css.map */
