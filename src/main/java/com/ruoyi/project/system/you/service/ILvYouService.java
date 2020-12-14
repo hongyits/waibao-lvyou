@@ -66,4 +66,10 @@ public interface ILvYouService
     List<LvYou> selectAll();
 
     List<LvYou> selectByTitleKey(String searchKey);
+
+    List<LvYou> selectFive();
+
+    List<String> getTags();
+
+    List<LvYou> selectByTag(String tagName);
 }

@@ -63,4 +63,9 @@ public interface LvYouMapper
     List<LvYou> selectAll();
 
     List<LvYou> selectByTitleKey(@Param(value = "searchKey") String searchKey);
+
+    List<LvYou> selectFive();
+
+    List<String> getTags();
+
 }

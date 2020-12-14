@@ -101,4 +101,20 @@ public class LvYouServiceImpl implements ILvYouService
     public List<LvYou> selectByTitleKey(String searchKey) {
         return lvYouMapper.selectByTitleKey(searchKey);
     }
+
+    @Override
+    public List<LvYou> selectFive() {
+        return lvYouMapper.selectFive();
+    }
+
+    @Override
+    public List<String> getTags() {
+
+        return lvYouMapper.getTags();
+    }
+
+    @Override
+    public List<LvYou> selectByTag(String tagName) {
+        return lvYouMapper.selectByTitleKey(tagName);
+    }
 }

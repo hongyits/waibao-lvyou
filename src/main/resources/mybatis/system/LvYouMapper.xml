@@ -125,4 +125,22 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
     </select>
 
+    <select id="selectFive" resultMap="LvYouResult">
+
+        <include refid="selectLvYouVo"/>
+        limit 5
+
+
+    </select>
+
+
+    <select id="getTags" resultType="java.lang.String">
+
+   select LOCATION_NAME from lv_you group by LOCATION_NAME
+
+
+    </select>
+
+
+
 </mapper>

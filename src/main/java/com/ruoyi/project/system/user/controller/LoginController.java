@@ -18,6 +18,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import com.ruoyi.common.utils.ServletUtils;
 import com.ruoyi.common.utils.StringUtils;
@@ -29,12 +30,11 @@ import java.util.List;
 
 /**
  * 登录验证
- * 
+ *
  * @author ruoyi
  */
 @Controller
-public class LoginController extends BaseController
-{
+public class LoginController extends BaseController {
     @Autowired
     private ILvYouService lvYouService;
 
@@ -43,11 +43,9 @@ public class LoginController extends BaseController
 
 
     @GetMapping("/login")
-    public String login(HttpServletRequest request, HttpServletResponse response)
-    {
+    public String login(HttpServletRequest request, HttpServletResponse response) {
         // 如果是Ajax请求，返回Json字符串。
-        if (ServletUtils.isAjaxRequest(request))
-        {
+        if (ServletUtils.isAjaxRequest(request)) {
             return ServletUtils.renderString(response, "{\"code\":\"1\",\"msg\":\"未登录或登录超时。请重新登录\"}");
         }
 
@@ -56,8 +54,7 @@ public class LoginController extends BaseController
 
 
     @GetMapping("/index2")
-    public String index2(HttpServletRequest request, HttpServletResponse response, ModelMap mmap)
-    {
+    public String index2(HttpServletRequest request, HttpServletResponse response, ModelMap mmap) {
         List<LvYou> list = lvYouService.selectAll();
         //把对应的所有文件都搞成缓存
         for (int i = 0; i < list.size(); i++) {
@@ -72,46 +69,58 @@ public class LoginController extends BaseController
 //                cache.put(fengmianUrl,imgStr);
 //            }
         }
-        mmap.put("lvyouInfo",list);
+        mmap.put("lvyouInfo", list);
         return "lvyouIndex/index";
     }
 
 
     @GetMapping("/indexLvYouInfo")
-    public String indexLvYouInfo(HttpServletRequest request, HttpServletResponse response, ModelMap mmap)
-    {
+    public String indexLvYouInfo(HttpServletRequest request, HttpServletResponse response, ModelMap mmap, @RequestParam(value = "needMore", required = false) String needMore, @RequestParam(value = "tagName", required = false) String tagName) {
+        boolean showMoreFlag = true;
+        List<LvYou> list = null;
+        if (StringUtils.isEmpty(needMore)) {
+            list = lvYouService.selectFive();
+        } else {
+            showMoreFlag = false;
+            list = lvYouService.selectAll();
+        }
+        if (StringUtils.isNotEmpty(tagName)) {
+            showMoreFlag = false;
+            list = lvYouService.selectByTag(tagName);
+        }
+
+
+        List<String> tags  = lvYouService.getTags();
+        mmap.addAttribute("list", list);
+        mmap.addAttribute("tags", tags);
+        mmap.addAttribute("showMoreFlag", showMoreFlag);
+
         return "lvyouIndex/info";
     }
 
     @GetMapping("/indexAbout")
-    public String indexAbout(HttpServletRequest request, HttpServletResponse response, ModelMap mmap)
-    {
+    public String indexAbout(HttpServletRequest request, HttpServletResponse response, ModelMap mmap) {
         return "lvyouIndex/about";
     }
 
 
     @GetMapping("/index3")
-    public String index3(HttpServletRequest request, HttpServletResponse response, ModelMap mmap)
-    {
+    public String index3(HttpServletRequest request, HttpServletResponse response, ModelMap mmap) {
 
         return "lvyouIndex/index";
     }
+
     @PostMapping("/login")
     @ResponseBody
-    public AjaxResult ajaxLogin(String username, String password, Boolean rememberMe)
-    {
+    public AjaxResult ajaxLogin(String username, String password, Boolean rememberMe) {
         UsernamePasswordToken token = new UsernamePasswordToken(username, password, rememberMe);
         Subject subject = SecurityUtils.getSubject();
-        try
-        {
+        try {
             subject.login(token);
             return success();
-        }
-        catch (AuthenticationException e)
-        {
+        } catch (AuthenticationException e) {
             String msg = "用户或密码错误";
-            if (StringUtils.isNotEmpty(e.getMessage()))
-            {
+            if (StringUtils.isNotEmpty(e.getMessage())) {
                 msg = e.getMessage();
             }
             return error(msg);
@@ -119,8 +128,7 @@ public class LoginController extends BaseController
     }
 
     @GetMapping("/unauth")
-    public String unauth()
-    {
+    public String unauth() {
         return "error/unauth";
     }
 }
