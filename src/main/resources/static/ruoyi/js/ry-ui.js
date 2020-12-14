@@ -1129,6 +1129,23 @@ var table = {
         	    };
         	    $.ajax(config)
             },
+            // 多部分上传
+            MulSave: function(url, data, callback) {
+                var config = {
+                    url: url,
+                    data: data,
+                    type: "post",
+                    processData: false,
+                    contentType: false,
+                    success: function(result) {
+                        if (typeof callback == "function") {
+                            callback(result);
+                        }
+                        $.operate.successCallback(result);
+                    }
+                };
+                $.ajax(config)
+            },
             // 保存信息 弹出提示框
             saveModal: function(url, data, callback) {
             	var config = {

@@ -86,7 +86,7 @@ body {
 .m-search {
   height: 600px;
   background-color: #badbee;
-  background: url("../img/search.jpg") no-repeat center center scroll;
+  background: url(../img/search.jpg) no-repeat center center scroll;
   width: 1263px;
   width: 100%;
   position: relative;

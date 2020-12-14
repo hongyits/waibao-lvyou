@@ -1,11 +1,15 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+
 <head>
 	<meta charset="utf-8">
-	<title>PC端固定布局</title>
-	<link rel="stylesheet" type="text/css" href="../static/lvyou/css/basic.css">
-	<link rel="stylesheet" type="text/css" href="../static/lvyou/css/info.css">
-	<link rel="stylesheet" type="text/css" href="../static/lvyou/css/sidebar.css">
+	<title>亿万旅行社资讯</title>
+	<link th:href="@{/css/basic.css}" rel="stylesheet">
+	<link th:href="@{/css/sidebar.css}" rel="stylesheet">
+	<link th:href="@{/css/info.css}" rel="stylesheet">
+	<link th:href="@{/css/index.css}" rel="stylesheet">
+	<script th:src="@{/js/jquery.min.js}"></script>
+	<script th:inline="javascript"> var ctx = [[@{/}]]; var captchaType = [[${captchaType}]];</script>
 </head>
 <body>
 <header class="g-hd">
@@ -15,18 +19,13 @@
 			<h2  class="h_none">网站导航</h2>
 			<ul>
 				<li>
-					<a href="index2.html">首页</a>
+					<a href="/index2">首页</a>
 				</li>
 								<li>
-					<a class="active" href="info.html">旅游资讯</a>
+					<a class="active" href="/indexLvYouInfo">旅游资讯</a>
 				</li>
-								<li>
-					<a href="ticket.html">机票订购</a>
-				</li>
-								<li>
-					<a href="scenery.html">风景欣赏</a>
-				<li>
-					<a href="about.html">公司简介</a>
+
+					<a href=/indexAbout>公司简介</a>
 				</li>
 				</li>
 

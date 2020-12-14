@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.project.system.you.mapper.LvYouMapper">
+    
+    <resultMap type="LvYou" id="LvYouResult">
+        <result property="lvyouId"    column="LVYOU_ID"    />
+        <result property="lvyouDesc"    column="LVYOU_DESC"    />
+        <result property="PRICE"    column="PRICE"    />
+        <result property="fengmianUrl"    column="FENGMIAN_URL"    />
+        <result property="pdfUrl"    column="PDF_URL"    />
+        <result property="crtDatetime"    column="CRT_DATETIME"    />
+        <result property="TITLE"    column="TITLE"    />
+        <result property="locationName"    column="LOCATION_NAME"    />
+        <result property="lvyouDescUs"    column="LVYOU_DESC_US"    />
+        <result property="pdfUrlUs"    column="PDF_URL_US"    />
+        <result property="titleUs"    column="TITLE_US"    />
+        <result property="locationNameUs"    column="LOCATION_NAME_US"    />
+    </resultMap>
+
+    <sql id="selectLvYouVo">
+        select LVYOU_ID, LVYOU_DESC, PRICE, FENGMIAN_URL, PDF_URL, CRT_DATETIME, TITLE, LOCATION_NAME, LVYOU_DESC_US, PDF_URL_US, TITLE_US, LOCATION_NAME_US from lv_you
+    </sql>
+
+    <select id="selectLvYouList" parameterType="LvYou" resultMap="LvYouResult">
+        <include refid="selectLvYouVo"/>
+        <where>  
+        </where>
+    </select>
+    
+    <select id="selectLvYouById" parameterType="String" resultMap="LvYouResult">
+        <include refid="selectLvYouVo"/>
+        where LVYOU_ID = #{lvyouId}
+    </select>
+        
+    <insert id="insertLvYou" parameterType="LvYou">
+        insert into lv_you
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="lvyouId != null">LVYOU_ID,</if>
+            <if test="lvyouDesc != null">LVYOU_DESC,</if>
+            <if test="PRICE != null">PRICE,</if>
+            <if test="fengmianUrl != null">FENGMIAN_URL,</if>
+            <if test="pdfUrl != null">PDF_URL,</if>
+            <if test="crtDatetime != null">CRT_DATETIME,</if>
+            <if test="TITLE != null">TITLE,</if>
+            <if test="locationName != null">LOCATION_NAME,</if>
+            <if test="lvyouDescUs != null">LVYOU_DESC_US,</if>
+            <if test="pdfUrlUs != null">PDF_URL_US,</if>
+            <if test="titleUs != null">TITLE_US,</if>
+            <if test="locationNameUs != null">LOCATION_NAME_US,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="lvyouId != null">#{lvyouId},</if>
+            <if test="lvyouDesc != null">#{lvyouDesc},</if>
+            <if test="PRICE != null">#{PRICE},</if>
+            <if test="fengmianUrl != null">#{fengmianUrl},</if>
+            <if test="pdfUrl != null">#{pdfUrl},</if>
+            <if test="crtDatetime != null">#{crtDatetime},</if>
+            <if test="TITLE != null">#{TITLE},</if>
+            <if test="locationName != null">#{locationName},</if>
+            <if test="lvyouDescUs != null">#{lvyouDescUs},</if>
+            <if test="pdfUrlUs != null">#{pdfUrlUs},</if>
+            <if test="titleUs != null">#{titleUs},</if>
+            <if test="locationNameUs != null">#{locationNameUs},</if>
+         </trim>
+    </insert>
+
+    <update id="updateLvYou" parameterType="LvYou">
+        update lv_you
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="lvyouDesc != null">LVYOU_DESC = #{lvyouDesc},</if>
+            <if test="PRICE != null">PRICE = #{PRICE},</if>
+            <if test="fengmianUrl != null">FENGMIAN_URL = #{fengmianUrl},</if>
+            <if test="pdfUrl != null">PDF_URL = #{pdfUrl},</if>
+            <if test="crtDatetime != null">CRT_DATETIME = #{crtDatetime},</if>
+            <if test="TITLE != null">TITLE = #{TITLE},</if>
+            <if test="locationName != null">LOCATION_NAME = #{locationName},</if>
+            <if test="lvyouDescUs != null">LVYOU_DESC_US = #{lvyouDescUs},</if>
+            <if test="pdfUrlUs != null">PDF_URL_US = #{pdfUrlUs},</if>
+            <if test="titleUs != null">TITLE_US = #{titleUs},</if>
+            <if test="locationNameUs != null">LOCATION_NAME_US = #{locationNameUs},</if>
+        </trim>
+        where LVYOU_ID = #{lvyouId}
+    </update>
+
+    <delete id="deleteLvYouById" parameterType="String">
+        delete from lv_you where LVYOU_ID = #{lvyouId}
+    </delete>
+
+    <delete id="deleteLvYouByIds" parameterType="String">
+        delete from lv_you where LVYOU_ID in 
+        <foreach item="lvyouId" collection="array" open="(" separator="," close=")">
+            #{lvyouId}
+        </foreach>
+    </delete>
+
+</mapper>

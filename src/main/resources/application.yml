@@ -9,7 +9,7 @@ ruoyi:
   # 实例演示开关
   demoEnabled: true
   # 文件路径 示例（ Windows配置D:/ruoyi/uploadPath，Linux配置 /home/ruoyi/uploadPath）
-  profile: ➜  /Users/huanghongyuan/IdeaProjects/waibao-lvyou/uploadPath
+  profile: /Users/huanghongyuan/IdeaProjects/waibao-lvyou/uploadPath
   # 获取ip地址开关
   addressEnabled: false
 
@@ -61,9 +61,9 @@ spring:
   servlet:
      multipart:
        # 单个文件大小
-       max-file-size:  10MB
+       max-file-size:  50MB
        # 设置总上传的文件大小
-       max-request-size:  20MB
+       max-request-size:  50MB
   # 服务模块
   devtools:
     restart:

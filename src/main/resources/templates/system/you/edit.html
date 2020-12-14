@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <th:block th:include="include :: header('修改旅游信息上传')" />
+</head>
+<body class="white-bg">
+    <div class="wrapper wrapper-content animated fadeInRight ibox-content">
+        <form   enctype="multipart/form-data"class="form-horizontal m" id="form-you-edit" th:object="${lvYou}">
+            <input name="lvyouId" th:field="*{lvyouId}" type="hidden">
+            <div class="form-group">
+                <label class="col-sm-3 control-label">：</label>
+                <div class="col-sm-8">
+                    <textarea name="lvyouDesc" class="form-control">[[*{lvyouDesc}]]</textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">价格：</label>
+                <div class="col-sm-8">
+                    <input name="PRICE" th:field="*{PRICE}" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">封面URL：</label>
+                <div class="col-sm-8">
+                    <textarea name="fengmianUrl" class="form-control">[[*{fengmianUrl}]]</textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">pdfURL：</label>
+                <div class="col-sm-8">
+                    <textarea name="pdfUrl" class="form-control">[[*{pdfUrl}]]</textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">创建时间：</label>
+                <div class="col-sm-8">
+                    <input name="crtDatetime" th:field="*{crtDatetime}" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">标题描述：</label>
+                <div class="col-sm-8">
+                    <input name="TITLE" th:field="*{TITLE}" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">地点描述：</label>
+                <div class="col-sm-8">
+                    <input name="locationName" th:field="*{locationName}" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">英文描述：</label>
+                <div class="col-sm-8">
+                    <textarea name="lvyouDescUs" class="form-control">[[*{lvyouDescUs}]]</textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">pdf英文URL：</label>
+                <div class="col-sm-8">
+                    <textarea name="pdfUrlUs" class="form-control">[[*{pdfUrlUs}]]</textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">标题描述：</label>
+                <div class="col-sm-8">
+                    <textarea name="titleUs" class="form-control">[[*{titleUs}]]</textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">地点英文描述：</label>
+                <div class="col-sm-8">
+                    <textarea name="locationNameUs" class="form-control">[[*{locationNameUs}]]</textarea>
+                </div>
+            </div>
+
+            <!-- 另外上传-->
+            <div>
+                <label class="col-sm-3 control-label">封面file：</label>
+                <div class="col-sm-8">
+                    <input type="file" name="fengmianFile" class="form-control">
+                </div>
+            </div>
+
+            <div>
+                <label class="col-sm-3 control-label">pdfFile：</label>
+                <div class="col-sm-8">
+                    <input type="file" name="pdfFile" class="form-control">
+                </div>
+            </div>
+
+            <div>
+                <label class="col-sm-3 control-label">英文pdfFile：</label>
+                <div class="col-sm-8">
+                    <input type="file" name="usPdfFile" class="form-control">
+                </div>
+            </div>
+
+
+
+        </form>
+    </div>
+    <th:block th:include="include :: footer" />
+    <script th:inline="javascript">
+        var prefix = ctx + "system/you";
+        $("#form-you-edit").validate({
+            focusCleanup: true
+        });
+
+        function submitHandler() {
+            if ($.validate.form()) {
+                var formdata = new FormData(document.getElementById("form-you-edit"));
+                // $.operate.MulSave(prefix + "/edit", $('#form-you-edit').serialize());
+                $.operate.MulSave(prefix + "/edit", formdata);
+            }
+        }
+    </script>
+</body>
+</html>
