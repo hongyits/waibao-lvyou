@@ -17,16 +17,16 @@
     <div class="hd_wrap">
         <h1 class="u-logo"><a href="index2.html"></a></h1>
         <nav class="m-nav">
-            <h2 class="h_none">网站导航</h2>
+            <h2 class="h_none">Website navigation</h2>
             <ul>
                 <li>
-                    <a class="active" href="/index2">首页</a>
+                    <a class="active" href="/index2??isUS=true">Index</a>
                 </li>
                 <li>
-                    <a href="/indexLvYouInfo">旅游资讯</a>
+                    <a href="/indexLvYouInfo?isUS=true">Travel</a>
                 </li>
                 <li>
-                    <a href="/indexAbout">公司简介</a>
+                    <a href="/indexAbout?isUS=true">Company profile</a>
                 </li>
                 </li>
 
@@ -36,47 +36,28 @@
 </header>
 <div class="m-search">
     <div class="center s_wrap"></div>
-    <input class="search_txt" type="text" name="" placeholder="请输入旅游景点或城市">
-    <button class="search_btn" onclick="searchTitle()">搜索</button>
+    <input class="search_txt" type="text" name="" placeholder="Please enter a tourist attraction">
+    <button class="search_btn" onclick="searchTitle()">Search</button>
 </div>
 
 
 <div class="g-mn index_tour"> <!-- 左右尖括号&lt; &gt; -->
     <section class="center">
-        <h2>热门旅游</h2>
-        <p>国内旅游、国外旅游、自助旅游、自驾旅游、油轮签证、主题旅游等各种最新热门旅游推荐</p>
+        <h2>Popular tourism</h2>
+        <p>Domestic tourism, foreign tourism, self-help tourism, self driving tourism, tanker visa, theme tourism and other hot tourism recommendations</p>
     </section>
-
-    <!--    <div>-->
-    <!--        撒打算的-->
-    <!--        <iframe id="haha" width="100%" height="100%"></iframe>-->
-
-    <!--    </div>-->
 
         <figure  th:each="LvYou :${lvyouInfo}">
 
             <img th:src="@{${LvYou.fengmianUrl}}" th:onclick="showPdf([[${LvYou.pdfUrl}]])" alt="热门旅游">
 
             <figcaption th:onclick="sowPdf([[${LvYou.pdfUrl}]])">
-                <strong class="title" th:text="${LvYou.TITLE}"></strong>
+                <strong class="title" th:text="${LvYou.titleUs}"></strong>
                 <div class="info" th:onclick="showPdf([[${LvYou.pdfUrl}]])">
                     <span class="price">¥ <strong th:text="${LvYou.PRICE}">2864</strong> 起</span>
                 </div>
             </figcaption>
         </figure>
-
-
-    <!--	<figure>-->
-    <!--		<img src="img/tour2.jpg" alt="热门旅游">-->
-    <!--		<figcaption>-->
-    <!--			<strong class="title">&lt;马尔代夫双鱼岛Olhuveli4晚6日自助游&gt;</strong> 上海出发，机+酒 包含:早晚餐+快艇-->
-    <!--			<div class="info">-->
-    <!--				<em class="sat">满意度 97%</em>-->
-    <!--				<span class="price">¥ <strong>8039</strong> 起</span>-->
-    <!--			</div>-->
-    <!--			<div class="type">出境长线</div>-->
-    <!--		</figcaption>-->
-    <!--	</figure>-->
 
 
 </div>
@@ -85,16 +66,16 @@
 <footer class="g-ft">
     <div class="top">
         <div class="block right">
-            <h2>联系方式</h2>
+            <h2>contact information</h2>
             <hr>
             <ul>
                 <li>
-                    微博：weibo.com/ycku
+                    Weibo：weibo.com/ycku
                 </li>
                 <li>
                 </li>
                 <li>
-                    地址：ycku@ycku.com
+                    Address：ycku@ycku.com
                 </li>
                 <li>
                     江苏盐城无名路123号
@@ -117,7 +98,7 @@
         var searchText = $(".search_txt").val();
         var trimText = $.trim(searchText);        if (trimText == '' || null == trimText) {
 
-            alert("请输入关键字");
+            alert("Please enter keywords");
             return;
         }
         var prefix = ctx + "system/you";
@@ -129,27 +110,7 @@
         var data = prefix + "/showPdf?fileName=" + fileName;
         var pdfURl = "/js/pdfjs/web/viewer.html?file=" + encodeURIComponent(data);
         window.open(pdfURl);
-        // $("#haha").attr("src",pdfURl); //显示方式2
 
-        // document.getElementById('_div_embed').src = 'showPdf.jhtml?path='+record.data.pdfpath;
-        // window.location.href = ctx + "system/you/showPdf?path=" + "123";
-        // $("#_embed").src = ctx + "/system/you/showPdf?path=" + "123";
-        // $.ajax({
-        //     cache: true,
-        //     type: "GET",
-        //     url: prefix + "/showPdf?fileName=" + "ddd",
-        //     async: false,
-        //     error: function (request) {
-        //         alert("fuck1");
-        //     },
-        //     success: function (data) {
-        // // var url = ctx + "system/you/showPdf?fileName=" + "123";;
-        // // var url = [[@{/converter/preview}]]+'?filePath='+filePath;
-        // // $("#handout_wrap_inner").empty();
-        // // $("#handout_wrap_inner").load(url);
-
-        //         }
-        //     });
     }
 
 

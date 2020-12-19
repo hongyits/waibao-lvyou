@@ -16,17 +16,17 @@
 	<div class="hd_wrap">
 		<h1 class="u-logo"><a href="index2.html"></a></h1>
 		<nav class="m-nav">
-			<h2  class="h_none">网站导航</h2>
+			<h2  class="h_none">Website navigation</h2>
 			<ul>
 				<li>
-					<a href="/index2">首页</a>
+					<a href="/index2?isUS=true">Index</a>
 				</li>
 				<li>
-					<a  class="active"  href="/indexLvYouInfo">旅游资讯</a>
+					<a  class="active"  href="/indexLvYouInfo?isUS=true">Travel</a>
 				</li>
 
 				<li>
-					<a href="/indexAbout">公司简介</a>
+					<a href="/indexAbout?isUS=true">Company profile</a>
 				</li>
 				</li>
 
@@ -37,8 +37,8 @@
 <div class="m-hdLine">
 	<div class="center">
 		<hgroup>
-			<h2>旅游资讯</h2>
-			<h3>介绍各种最新旅游信息、资讯要闻、景点攻略等</h3>
+			<h2>Travel information</h2>
+			<h3>Introduce all kinds of latest tourism information, news, scenic spots and so on</h3>
 		</hgroup>
 	</div>
 </div>
@@ -47,10 +47,10 @@
 	<div class="list infomation">
 		<div class="infor">
 			<ul class="left">
-				<li><a href="##">热门推荐</a></li>
+				<li><a href="##">Popular</a></li>
 			</ul>
 			<ul class="right">
-				<li><a class="selected" href="##">推荐</a></li>
+				<li><a class="selected" href="##">recommend</a></li>
 			</ul>
 		</div>
 		<figure th:each="LvYou :${list}">
@@ -61,8 +61,8 @@
 					<header>
 						<hgroup>
 
-							<h2 th:text="${LvYou.TITLE}">曼谷-芭提雅6日游</h2>
-							<h3 th:text="${LvYou.lvyouDesc}">包团特惠，超丰富景点，升级1晚国五，无自费，赠送600元成人券...</h3>
+							<h2 th:text="${LvYou.titleUs}">曼谷-芭提雅6日游</h2>
+							<h3 th:text="${LvYou.lvyouDescUs}">包团特惠，超丰富景点，升级1晚国五，无自费，赠送600元成人券...</h3>
 						</hgroup>
 					</header>
 
@@ -99,13 +99,13 @@
 <!--		</figure>-->
 
 
-		<div class="more" th:if="${showMoreFlag}"><a onclick="showMore()" >加载更多...</a></div>
+		<div class="more" th:if="${showMoreFlag}"><a onclick="showMore()" >more...</a></div>
+
 
 	</div>
 
 
 	<aside class="m-sidebar">
-
 		<div class="recommend content">
 			<h2>景点推荐</h2>
 			<div class="tag">
@@ -123,12 +123,13 @@
 <script>
 	function showMore() {
 		// var prefix = ctx + "system/you/indexLvYouInfo?needMore=123";
-		window.location.href = "indexLvYouInfo?needMore=123";
+		window.location.href = "indexLvYouInfo?needMore=123&isUS=true";
 	}
 
 	function searchTag(tagName) {
+
 		// var prefix = ctx + "system/you/indexLvYouInfo?needMore=123";
-		window.location.href = "indexLvYouInfo?tagName="+tagName;
+		window.location.href = "indexLvYouInfo?tagName="+tagName+"&isUS=true";
 	}
 
 

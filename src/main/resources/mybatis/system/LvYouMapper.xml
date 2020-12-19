@@ -119,10 +119,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 
 
-        where TITLE like lower(concat('%', #{searchKey}, '%'))
+        where location_name like (concat('%', #{searchKey}, '%'))
 
 
 
+    </select>
+
+
+    <select id="selectByUSTitleKey" resultMap="LvYouResult">
+
+        <include refid="selectLvYouVo"/>
+        where location_name_us like (concat('%', #{searchKey}, '%'))
     </select>
 
     <select id="selectFive" resultMap="LvYouResult">
@@ -139,6 +146,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    select LOCATION_NAME from lv_you group by LOCATION_NAME
 
 
+    </select>
+
+
+    <select id="getUSTags" resultType="java.lang.String">
+   select LOCATION_NAME_us from lv_you group by LOCATION_NAME_us
     </select>
 
 

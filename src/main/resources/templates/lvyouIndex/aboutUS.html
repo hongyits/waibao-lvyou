@@ -1,0 +1,82 @@
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Company profile</title>
+
+	<link th:href="@{/css/basic.css}" rel="stylesheet">
+	<link th:href="@{/css/about.css}" rel="stylesheet">
+	<link th:href="@{/css/sidebar.css}" rel="stylesheet">
+</head>
+<body>
+<header class="g-hd">
+	<div class="hd_wrap">
+		<h1 class="u-logo"><a href="index2.html"></a></h1>
+		<nav class="m-nav">
+			<h2  class="h_none">Website navigation</h2>
+			<ul>
+				<li>
+					<a href="/index2?isUS=true">Index</a>
+				</li>
+				<li>
+					<a   href="/indexLvYouInfo?isUS=true">Travel</a>
+				</li>
+
+				<li>
+					<a  class="active"  href=/indexAbout?isUS=true>Company profile</a>
+				</li>
+				</li>
+
+			</ul>
+		</nav>
+	</div>
+</header>
+<div class="m-hdLine">
+	<div class="center">
+		<hgroup>
+			<h2>Travel information</h2>
+			<h3>Introduce all kinds of latest tourism information, news, scenic spots and so on</h3>
+		</hgroup>
+	</div>
+</div>
+<div class="g-mn">
+	<div class="list about">
+		<section>
+			<h2>About us</h2>
+			<p>Founded in October 2006, Yiyi travel agency travel network takes "making tourism simpler" as its mission. It provides consumers with travel product booking services starting from 64 cities such as Beijing, Shanghai, Guangzhou and Shenzhen. The products are comprehensive, the price is transparent, and the booking is made by 400 calls 365 days a year, providing rich follow-up services and guarantees.
+			</p>
+			<p>
+				At present, hundreds of millions of travel agencies provide more than 80000 kinds of tourism products for consumers to choose from, covering group following, self-service, self driving, cruise, hotel, visa, scenic spot tickets and corporate tourism, etc., and has successfully served more than 4 million people.
+			</p>
+			<p>
+				At the same time, based on the global Chinese scenic spots directory of the travel agency travel network and Chinese tourism community, it can help tourists better understand the destination information, make a good travel plan, and easily book the service items in the journey.
+			</p>
+		</section>
+
+		<section>
+			<address>
+				<h2>contact us</h2>
+				<ul>
+					<li>亿万旅行社股份有限公司</li>
+					<li>Address：江苏省盐城市亭湖区大庆中路1234号</li>
+					<li>Postcode ：1234567</li>
+					<li>Tel：010-88888888</li>
+					<li>Email：010-88666666</li>
+				</ul>
+			</address>
+		</section>
+	</div>
+
+</div>
+
+<footer class="g-ft">
+	<div class="m-copyright bottom ">
+		<div style="text-align: center">
+			<a href="/index2">中文</a>
+			<a href="/index2?isUS=true">English</a>
+		</div>
+	Copyright © YCKU 亿万旅行社 | 苏ICP备120110119号 | 旅行社经营许可证：L-YC-BK12345
+	</div>
+</footer>
+</body>
+</html>

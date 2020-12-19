@@ -72,4 +72,8 @@ public interface ILvYouService
     List<String> getTags();
 
     List<LvYou> selectByTag(String tagName);
+
+    List<String> getUSTags();
+
+    List<LvYou> selectByUSTag(String tagName);
 }

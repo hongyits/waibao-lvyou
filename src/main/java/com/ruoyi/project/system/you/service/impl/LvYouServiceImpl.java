@@ -117,4 +117,15 @@ public class LvYouServiceImpl implements ILvYouService
     public List<LvYou> selectByTag(String tagName) {
         return lvYouMapper.selectByTitleKey(tagName);
     }
+
+    @Override
+    public List<String> getUSTags() {
+        return lvYouMapper.getUSTags();
+    }
+
+    @Override
+    public List<LvYou> selectByUSTag(String tagName) {
+        return lvYouMapper.selectByUSTitleKey(tagName);
+
+    }
 }

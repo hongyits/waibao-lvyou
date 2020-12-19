@@ -54,7 +54,7 @@ public class LoginController extends BaseController {
 
 
     @GetMapping("/index2")
-    public String index2(HttpServletRequest request, HttpServletResponse response, ModelMap mmap) {
+    public String index2(HttpServletRequest request, HttpServletResponse response, ModelMap mmap,@RequestParam(value = "isUS",required = false)  String isUS) {
         List<LvYou> list = lvYouService.selectAll();
         //把对应的所有文件都搞成缓存
         for (int i = 0; i < list.size(); i++) {
@@ -62,20 +62,22 @@ public class LoginController extends BaseController {
             String fengmianUrl = lvYou.getFengmianUrl();
             String pdfUrl = lvYou.getPdfUrl();
             String pdfUrlUs = lvYou.getPdfUrlUs();
-//
-//            Cache<String, Object> cache = CacheUtils.getCache(fengmianUrl);
-//            if (null == cache) {
-//                String imgStr = Base64Utils.getImgStr(defaultBaseDir + File.separator + fengmianUrl);
-//                cache.put(fengmianUrl,imgStr);
-//            }
+
         }
         mmap.put("lvyouInfo", list);
-        return "lvyouIndex/index";
+        if (StringUtils.isNotEmpty(isUS)){
+            return "lvyouIndex/indexUS";
+
+        }else {
+            return "lvyouIndex/index";
+
+        }
     }
 
 
+
     @GetMapping("/indexLvYouInfo")
-    public String indexLvYouInfo(HttpServletRequest request, HttpServletResponse response, ModelMap mmap, @RequestParam(value = "needMore", required = false) String needMore, @RequestParam(value = "tagName", required = false) String tagName) {
+    public String indexLvYouInfo(HttpServletRequest request, HttpServletResponse response, ModelMap mmap, @RequestParam(value = "needMore", required = false) String needMore, @RequestParam(value = "tagName", required = false) String tagName,@RequestParam(value = "isUS",required = false)  String isUS) {
         boolean showMoreFlag = true;
         List<LvYou> list = null;
         if (StringUtils.isEmpty(needMore)) {
@@ -86,21 +88,46 @@ public class LoginController extends BaseController {
         }
         if (StringUtils.isNotEmpty(tagName)) {
             showMoreFlag = false;
-            list = lvYouService.selectByTag(tagName);
+
+            if (StringUtils.isNotEmpty(isUS)) {
+                list = lvYouService.selectByUSTag(tagName);
+            }else {
+                list = lvYouService.selectByTag(tagName);
+
+            }
         }
 
 
-        List<String> tags  = lvYouService.getTags();
+        List<String> tags  = null;
+        if (StringUtils.isNotEmpty(isUS)) {
+            tags= lvYouService.getUSTags();
+        }else {
+            tags= lvYouService.getTags();
+
+        }
+
+
         mmap.addAttribute("list", list);
         mmap.addAttribute("tags", tags);
         mmap.addAttribute("showMoreFlag", showMoreFlag);
 
-        return "lvyouIndex/info";
+        if (StringUtils.isNotEmpty(isUS)) {
+            return "lvyouIndex/infoUS";
+
+        }else {
+            return "lvyouIndex/info";
+
+        }
     }
 
     @GetMapping("/indexAbout")
-    public String indexAbout(HttpServletRequest request, HttpServletResponse response, ModelMap mmap) {
-        return "lvyouIndex/about";
+    public String indexAbout(HttpServletRequest request, HttpServletResponse response, ModelMap mmap,@RequestParam(value = "isUS",required = false)  String isUS) {
+        if (StringUtils.isNotEmpty(isUS)) {
+            return "lvyouIndex/aboutUS";
+        }else {
+            return "lvyouIndex/about";
+
+        }
     }
 
 

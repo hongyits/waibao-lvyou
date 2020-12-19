@@ -68,4 +68,7 @@ public interface LvYouMapper
 
     List<String> getTags();
 
+    List<String> getUSTags();
+
+    List<LvYou> selectByUSTitleKey(String tagName);
 }
