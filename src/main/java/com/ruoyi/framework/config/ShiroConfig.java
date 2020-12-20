@@ -260,6 +260,9 @@ public class ShiroConfig
         // 不需要拦截的访问
         filterChainDefinitionMap.put("/login", "anon,captchaValidate");
         filterChainDefinitionMap.put("/index2", "anon");
+        filterChainDefinitionMap.put("/indexLvYouInfo", "anon");
+        filterChainDefinitionMap.put("/indexAbout", "anon");
+        filterChainDefinitionMap.put("/profile/**", "anon");
         // 注册相关
         filterChainDefinitionMap.put("/register", "anon,captchaValidate");
         // 系统权限列表

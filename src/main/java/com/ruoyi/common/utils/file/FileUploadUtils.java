@@ -111,7 +111,6 @@ public class FileUploadUtils {
         }
 
         assertAllowed(file, allowedExtension);
-
         String fileName = extractFilename(file);
 
         File desc = getAbsoluteFile(baseDir, fileName);
@@ -128,7 +127,7 @@ public class FileUploadUtils {
             throw new FileNameLengthLimitExceededException(FileUploadUtils.DEFAULT_FILE_NAME_LENGTH);
         }
 
-        assertAllowed(file, allowedExtension);
+        assertAllowedPdf(file, allowedExtension);
 
         String fileName = extractFilename(file);
 
@@ -145,7 +144,7 @@ public class FileUploadUtils {
         String fileName = file.getOriginalFilename();
 //        String extension = getExtension(file);
 //        fileName = DateUtils.datePath() + "/" + IdUtils.fastUUID() + "." + fileName;
-        fileName = IdUtils.fastUUID() + fileName;
+        fileName = IdUtils.fastUUID();
         return fileName;
     }
 
@@ -173,6 +172,46 @@ public class FileUploadUtils {
         String pathFileName = currentDir + "/" + fileName; //todo
         return pathFileName;
     }
+
+
+    /**
+     * 文件大小校验
+     *
+     * @param file 上传的文件
+     * @return
+     * @throws FileSizeLimitExceededException 如果超出最大大小
+     * @throws InvalidExtensionException
+     */
+    public static final void assertAllowedPdf(MultipartFile file, String[] allowedExtension)
+            throws FileSizeLimitExceededException, InvalidExtensionException {
+        long size = file.getSize();
+        if (DEFAULT_MAX_SIZE != -1 && size > DEFAULT_MAX_SIZE) {
+            throw new FileSizeLimitExceededException(DEFAULT_MAX_SIZE / 1024 / 1024);
+        }
+
+        String fileName = file.getOriginalFilename();
+        String extension = getExtension(file);
+        if (allowedExtension != null && !isAllowedExtension(extension, allowedExtension)) {
+            if (allowedExtension == MimeTypeUtils.IMAGE_PDF_EXTENSION) {
+                throw new InvalidExtensionException.InvalidImageExtensionException(allowedExtension, extension,
+                        fileName);
+            } else if (allowedExtension == MimeTypeUtils.FLASH_EXTENSION) {
+                throw new InvalidExtensionException.InvalidFlashExtensionException(allowedExtension, extension,
+                        fileName);
+            } else if (allowedExtension == MimeTypeUtils.MEDIA_EXTENSION) {
+                throw new InvalidExtensionException.InvalidMediaExtensionException(allowedExtension, extension,
+                        fileName);
+            } else if (allowedExtension == MimeTypeUtils.VIDEO_EXTENSION) {
+                throw new InvalidExtensionException.InvalidVideoExtensionException(allowedExtension, extension,
+                        fileName);
+            } else {
+                throw new InvalidExtensionException(allowedExtension, extension, fileName);
+            }
+        }
+
+    }
+
+
 
     /**
      * 文件大小校验

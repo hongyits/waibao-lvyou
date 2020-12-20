@@ -56,11 +56,12 @@
         <figure  th:each="LvYou :${lvyouInfo}">
 
             <img th:src="@{${LvYou.fengmianUrl}}" th:onclick="showPdf([[${LvYou.pdfUrl}]])" alt="热门旅游">
+<!--            <img src="/Users/huanghongyuan/IdeaProjects/waibao-lvyou/uploadPath/avatar/4a4de563-1e2c-4456-928b-d05b5f2cc7d2suolong.jpg" th:onclick="showPdf([[${LvYou.pdfUrl}]])" alt="热门旅游">-->
 
             <figcaption th:onclick="sowPdf([[${LvYou.pdfUrl}]])">
                 <strong class="title" th:text="${LvYou.TITLE}"></strong>
                 <div class="info" th:onclick="showPdf([[${LvYou.pdfUrl}]])">
-                    <span class="price">¥ <strong th:text="${LvYou.PRICE}">2864</strong> 起</span>
+                    <span class="price">₱ <strong th:text="${LvYou.PRICE}">2864</strong> 起</span>
                 </div>
             </figcaption>
         </figure>

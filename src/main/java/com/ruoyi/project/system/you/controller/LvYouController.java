@@ -4,12 +4,15 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.Date;
 import java.util.List;
 
 import com.ruoyi.common.utils.CacheUtils;
 import com.ruoyi.common.utils.StringUtils;
 import com.ruoyi.common.utils.file.Base64Utils;
+import com.ruoyi.common.utils.file.DateUtil;
 import com.ruoyi.common.utils.file.FileUploadUtils;
+import com.ruoyi.common.utils.file.OutNoGenerator;
 import com.ruoyi.framework.aspectj.lang.annotation.Log;
 import com.ruoyi.framework.config.RuoYiConfig;
 import lombok.extern.slf4j.Slf4j;
@@ -175,26 +178,36 @@ public class LvYouController extends BaseController {
     @ResponseBody
     public AjaxResult editSave(LvYou lvYou, @RequestParam("fengmianFile") MultipartFile fengmianFile, @RequestParam("pdfFile") MultipartFile pdfFile, @RequestParam("usPdfFile") MultipartFile usPdfFile) {
         try {
-            if (!fengmianFile.isEmpty()) {
+
+            if (!fengmianFile.isEmpty()) { //只允许上传图片
                 String fengmianName = FileUploadUtils.upload(RuoYiConfig.getAvatarPath(), fengmianFile);
                 lvYou.setFengmianUrl(fengmianName);
             }
-            if (!pdfFile.isEmpty()) {
+            if (!pdfFile.isEmpty()) { //只允许上传doc、docx、pdf，如果是doc就转换成pdf
                 String pdfFileName = FileUploadUtils.uploadPdf(RuoYiConfig.getAvatarPath(), pdfFile);
                 lvYou.setPdfUrl(pdfFileName);
 
             }
-            if (!usPdfFile.isEmpty()) {
+            if (!usPdfFile.isEmpty()) { //只允许上传doc、docx
                 String usPdfFileName = FileUploadUtils.uploadPdf(RuoYiConfig.getAvatarPath(), usPdfFile);
                 lvYou.setPdfUrlUs(usPdfFileName);
             }
 
+            int returnRes;
+            if (StringUtils.isEmpty(lvYou.getLvyouId())) { //保存
+                lvYou.setLvyouId(OutNoGenerator.nextOutNo());
+                lvYou.setCrtDatetime(DateUtil.getPlainFullTime(new Date()));
+                returnRes = lvYouService.insertLvYou(lvYou);
+            } else {
+                returnRes = lvYouService.updateLvYou(lvYou);
+            }
 
+            return toAjax(returnRes);
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        return toAjax(lvYouService.updateLvYou(lvYou));
+        return toAjax(0);
     }
 
     /**
@@ -210,25 +223,25 @@ public class LvYouController extends BaseController {
 
 
     @RequestMapping(value = "/showPdf", method = RequestMethod.GET)
-    public void showPdf(HttpServletRequest request, HttpServletResponse response,@RequestParam(value = "fileName") String fileName) {
+    public void showPdf(HttpServletRequest request, HttpServletResponse response, @RequestParam(value = "fileName") String fileName) {
         //PDF文件地址
-        String pdfUrl =defaultBaseDir + File.separator + fileName;
+        String pdfUrl = defaultBaseDir + File.separator + fileName;
 
 //        File file = new File("/Users/huanghongyuan/IdeaProjects/waibao-lvyou/uploadPath/2.pdf");//test
         File file = new File(pdfUrl);
         if (file.exists()) {
             byte[] data = null;
-            FileInputStream input=null;
+            FileInputStream input = null;
             try {
-                input= new FileInputStream(file);
+                input = new FileInputStream(file);
                 data = new byte[input.available()];
                 input.read(data);
                 response.getOutputStream().write(data);
             } catch (Exception e) {
                 System.out.println("pdf文件处理异常：" + e);
-            }finally{
+            } finally {
                 try {
-                    if(input!=null){
+                    if (input != null) {
                         input.close();
                     }
                 } catch (IOException e) {

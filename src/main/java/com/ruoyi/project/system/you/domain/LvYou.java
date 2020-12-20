@@ -14,7 +14,7 @@ import com.ruoyi.framework.web.domain.BaseEntity;
  */
 
 @Data
-public class LvYou extends BaseEntity
+public class LvYou
 {
     private static final long serialVersionUID = 1L;
 

@@ -7,18 +7,59 @@
     <div class="wrapper wrapper-content animated fadeInRight ibox-content">
         <form   enctype="multipart/form-data"class="form-horizontal m" id="form-you-edit" th:object="${lvYou}">
             <input name="lvyouId" th:field="*{lvyouId}" type="hidden">
+
             <div class="form-group">
-                <label class="col-sm-3 control-label">：</label>
+                <label class="col-sm-3 control-label">标题描述：</label>
                 <div class="col-sm-8">
-                    <textarea name="lvyouDesc" class="form-control">[[*{lvyouDesc}]]</textarea>
+                    <input name="TITLE" th:field="*{TITLE}" class="form-control" type="text">
                 </div>
             </div>
+
+            <div class="form-group">
+                <label class="col-sm-3 control-label">标题-英文描述：</label>
+                <div class="col-sm-8">
+                    <textarea name="titleUs" class="form-control">[[*{titleUs}]]</textarea>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-3 control-label">地点描述：</label>
+                <div class="col-sm-8">
+                    <input name="locationName" th:field="*{locationName}" class="form-control" type="text">
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <label class="col-sm-3 control-label">地点英文描述：</label>
+                <div class="col-sm-8">
+                    <textarea name="locationNameUs" class="form-control">[[*{locationNameUs}]]</textarea>
+                </div>
+            </div>
+
             <div class="form-group">
                 <label class="col-sm-3 control-label">价格：</label>
                 <div class="col-sm-8">
                     <input name="PRICE" th:field="*{PRICE}" class="form-control" type="text">
                 </div>
             </div>
+
+
+            <div class="form-group">
+                <label class="col-sm-3 control-label">旅游描述：</label>
+                <div class="col-sm-8">
+                    <textarea name="lvyouDesc" class="form-control">[[*{lvyouDesc}]]</textarea>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-3 control-label">旅游-英文描述：</label>
+                <div class="col-sm-8">
+                    <textarea name="lvyouDescUs" class="form-control">[[*{lvyouDescUs}]]</textarea>
+                </div>
+            </div>
+
+
             <div class="form-group">
                 <label class="col-sm-3 control-label">封面URL：</label>
                 <div class="col-sm-8">
@@ -31,48 +72,16 @@
                     <textarea name="pdfUrl" class="form-control">[[*{pdfUrl}]]</textarea>
                 </div>
             </div>
-            <div class="form-group">
-                <label class="col-sm-3 control-label">创建时间：</label>
-                <div class="col-sm-8">
-                    <input name="crtDatetime" th:field="*{crtDatetime}" class="form-control" type="text">
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-sm-3 control-label">标题描述：</label>
-                <div class="col-sm-8">
-                    <input name="TITLE" th:field="*{TITLE}" class="form-control" type="text">
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-sm-3 control-label">地点描述：</label>
-                <div class="col-sm-8">
-                    <input name="locationName" th:field="*{locationName}" class="form-control" type="text">
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-sm-3 control-label">英文描述：</label>
-                <div class="col-sm-8">
-                    <textarea name="lvyouDescUs" class="form-control">[[*{lvyouDescUs}]]</textarea>
-                </div>
-            </div>
+
+
             <div class="form-group">
                 <label class="col-sm-3 control-label">pdf英文URL：</label>
                 <div class="col-sm-8">
                     <textarea name="pdfUrlUs" class="form-control">[[*{pdfUrlUs}]]</textarea>
                 </div>
             </div>
-            <div class="form-group">
-                <label class="col-sm-3 control-label">标题描述：</label>
-                <div class="col-sm-8">
-                    <textarea name="titleUs" class="form-control">[[*{titleUs}]]</textarea>
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-sm-3 control-label">地点英文描述：</label>
-                <div class="col-sm-8">
-                    <textarea name="locationNameUs" class="form-control">[[*{locationNameUs}]]</textarea>
-                </div>
-            </div>
+
+
 
             <!-- 另外上传-->
             <div>
