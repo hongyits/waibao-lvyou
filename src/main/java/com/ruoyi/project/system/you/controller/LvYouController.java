@@ -63,18 +63,6 @@ public class LvYouController extends BaseController {
     public String you(Model model) {
         List<LvYou> list = lvYouService.selectAll();
         //把对应的所有文件都搞成缓存
-        for (int i = 0; i < list.size(); i++) {
-            LvYou lvYou = list.get(i);
-            String fengmianUrl = lvYou.getFengmianUrl();
-            String pdfUrl = lvYou.getPdfUrl();
-            String pdfUrlUs = lvYou.getPdfUrlUs();
-
-            Cache<String, Object> cache = CacheUtils.getCache(fengmianUrl);
-            if (null == cache) {
-                String imgStr = Base64Utils.getImgStr(defaultBaseDir + File.separator + fengmianUrl);
-                cache.put(fengmianUrl, imgStr);
-            }
-        }
         model.addAttribute("lvyouInfo", list);
 
         return prefix + "/you";
