@@ -13,7 +13,7 @@ ruoyi:
   # 获取ip地址开关
   addressEnabled: false
 
-# 开发环境配置
+# 开发环境配置F
 server:
   # 服务器的HTTP端口，默认为80
   port: 8888
@@ -89,8 +89,8 @@ pagehelper:
 # Shiro
 shiro:
   user:
-    # 登录地址
-    loginUrl: /login
+    # 登录地址 失败
+    loginUrl: /index2
     # 权限认证失败地址
     unauthorizedUrl: /unauth
     # 首页地址

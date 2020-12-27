@@ -260,6 +260,8 @@ public class ShiroConfig
         // 不需要拦截的访问
         filterChainDefinitionMap.put("/login", "anon,captchaValidate");
         filterChainDefinitionMap.put("/index2", "anon");
+        filterChainDefinitionMap.put("/system/**", "anon");
+        filterChainDefinitionMap.put("/showPdf", "anon");
         filterChainDefinitionMap.put("/indexLvYouInfo", "anon");
         filterChainDefinitionMap.put("/indexAbout", "anon");
         filterChainDefinitionMap.put("/profile/**", "anon");
@@ -353,7 +355,8 @@ public class ShiroConfig
         // 是否踢出后来登录的，默认是false；即后者登录的用户踢出前者登录的用户；踢出顺序
         kickoutSessionFilter.setKickoutAfter(kickoutAfter);
         // 被踢出后重定向到的地址；
-        kickoutSessionFilter.setKickoutUrl("/login?kickout=1");
+//        kickoutSessionFilter.setKickoutUrl("/login?kickout=1"); //todo
+        kickoutSessionFilter.setKickoutUrl("/index2");
         return kickoutSessionFilter;
     }
 

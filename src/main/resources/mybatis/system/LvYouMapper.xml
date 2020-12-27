@@ -17,10 +17,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <result property="pdfUrlUs"    column="PDF_URL_US"    />
         <result property="titleUs"    column="TITLE_US"    />
         <result property="locationNameUs"    column="LOCATION_NAME_US"    />
+        <result property="tag"    column="TAG"    />
+        <result property="tagUs"    column="TAG_US"    />
     </resultMap>
 
     <sql id="selectLvYouVo">
-        select LVYOU_ID, LVYOU_DESC, PRICE, FENGMIAN_URL, PDF_URL, CRT_DATETIME, TITLE, LOCATION_NAME, LVYOU_DESC_US, PDF_URL_US, TITLE_US, LOCATION_NAME_US from lv_you
+        select LVYOU_ID, LVYOU_DESC, PRICE, FENGMIAN_URL, PDF_URL, CRT_DATETIME, TITLE, LOCATION_NAME, LVYOU_DESC_US, PDF_URL_US, TITLE_US, LOCATION_NAME_US,TAG,TAG_US from lv_you
     </sql>
 
     <select id="selectLvYouList" parameterType="com.ruoyi.project.system.you.domain.LvYou" resultMap="LvYouResult">
@@ -60,6 +62,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="pdfUrlUs != null">PDF_URL_US,</if>
             <if test="titleUs != null">TITLE_US,</if>
             <if test="locationNameUs != null">LOCATION_NAME_US,</if>
+            <if test="tag != null">TAG,</if>
+            <if test="tagUs != null">TAG_US,</if>
          </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="lvyouId != null">#{lvyouId},</if>
@@ -74,6 +78,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="pdfUrlUs != null">#{pdfUrlUs},</if>
             <if test="titleUs != null">#{titleUs},</if>
             <if test="locationNameUs != null">#{locationNameUs},</if>
+            <if test="tag != null">#{tag},</if>
+            <if test="tagUs != null">#{tagUs},</if>
          </trim>
     </insert>
 
@@ -91,6 +97,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="pdfUrlUs != null">PDF_URL_US = #{pdfUrlUs},</if>
             <if test="titleUs != null">TITLE_US = #{titleUs},</if>
             <if test="locationNameUs != null">LOCATION_NAME_US = #{locationNameUs},</if>
+            <if test="tag != null">TAG = #{tag},</if>
+            <if test="tagUs != null">TAG_US = #{tagUs},</if>
         </trim>
         where LVYOU_ID = #{lvyouId}
     </update>
@@ -153,6 +161,29 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    select LOCATION_NAME_us from lv_you group by LOCATION_NAME_us
     </select>
 
+    <select id="selectByTag2" resultMap="LvYouResult">
 
+        <include refid="selectLvYouVo"/>
+        where TAG like (concat('%', #{searchKey}, '%'))
+
+
+    </select>
+
+    <select id="selectByUSTag2" resultMap="LvYouResult">
+
+        <include refid="selectLvYouVo"/>
+        where TAG_US like (concat('%', #{searchKey}, '%'))
+
+
+    </select>
+
+
+    <select id="getUSTags2" resultType="java.lang.String">
+      select TAG_US from lv_you group by TAG_US
+    </select>
+
+    <select id="getTags2" resultType="java.lang.String">
+   select TAG from lv_you group by TAG
+    </select>
 
 </mapper>

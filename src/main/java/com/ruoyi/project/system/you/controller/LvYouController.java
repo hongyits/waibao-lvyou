@@ -168,7 +168,9 @@ public class LvYouController extends BaseController {
         try {
 
             if (!fengmianFile.isEmpty()) { //只允许上传图片
-                String fengmianName = FileUploadUtils.upload(RuoYiConfig.getAvatarPath(), fengmianFile);
+//                String fengmianName = FileUploadUtils.upload(RuoYiConfig.getAvatarPath(), fengmianFile);
+                String fengmianName = FileUploadUtils.uploadFixed(RuoYiConfig.getAvatarPath(), fengmianFile);
+
                 lvYou.setFengmianUrl(fengmianName);
             }
             if (!pdfFile.isEmpty()) { //只允许上传doc、docx、pdf，如果是doc就转换成pdf
@@ -217,6 +219,9 @@ public class LvYouController extends BaseController {
 
 //        File file = new File("/Users/huanghongyuan/IdeaProjects/waibao-lvyou/uploadPath/2.pdf");//test
         File file = new File(pdfUrl);
+        boolean exists = file.exists();
+        log.info("%s",exists);
+        log.info("%s",file.getPath());
         if (file.exists()) {
             byte[] data = null;
             FileInputStream input = null;
@@ -233,6 +238,7 @@ public class LvYouController extends BaseController {
                         input.close();
                     }
                 } catch (IOException e) {
+                    e.printStackTrace();
                     e.printStackTrace();
                 }
             }

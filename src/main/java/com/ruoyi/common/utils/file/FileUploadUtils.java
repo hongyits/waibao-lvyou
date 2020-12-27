@@ -212,7 +212,6 @@ public class FileUploadUtils {
     }
 
 
-
     /**
      * 文件大小校验
      *
@@ -278,5 +277,31 @@ public class FileUploadUtils {
             extension = MimeTypeUtils.getExtension(file.getContentType());
         }
         return extension;
+    }
+
+    public static String uploadFixed(String baseDir, MultipartFile file) throws IOException {
+        int fileNamelength = file.getOriginalFilename().length();
+        if (fileNamelength > FileUploadUtils.DEFAULT_FILE_NAME_LENGTH) {
+            throw new FileNameLengthLimitExceededException(FileUploadUtils.DEFAULT_FILE_NAME_LENGTH);
+        }
+
+        String fileName = extractFilename(file);
+
+        File desc = getAbsoluteFile(baseDir, fileName);
+        String path = desc.getPath();
+
+
+        file.transferTo(desc); //todo 换成修改大小后的
+        FileUtils.changeSize(path);
+        //
+        String pathFileName = getPathFileName(baseDir, fileName);
+        return pathFileName;
+
+
+//        try {
+//            return upload(getDefaultBaseDir(), file, MimeTypeUtils.DEFAULT_ALLOWED_EXTENSION);
+//        } catch (Exception e) {
+//            throw new IOException(e.getMessage(), e);
+//        }
     }
 }

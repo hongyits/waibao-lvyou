@@ -44,19 +44,22 @@
 </div>
 
 <div class="g-mn">
-	<div class="list infomation">
-		<div class="infor">
-			<ul class="left">
-				<li><a href="##">Popular</a></li>
+	<div class="list infomation" >
+		<div class="infor" style=" overflow: auto;height: 100%;border-collapse: 0px">
+
+
+			<ul class="left" th:each="sb :${tags2}">
+				<li><a href="##" th:text="${sb}" th:onclick="searchTag([[${sb}]])">Popular</a></li>
 			</ul>
-			<ul class="right">
-				<li><a class="selected" href="##">recommend</a></li>
-			</ul>
+
+<!--			<ul class="right">-->
+<!--				<li><a class="selected" href="##">recommend</a></li>-->
+<!--			</ul>-->
 		</div>
-		<figure th:each="LvYou :${list}">
-			<img src="img/tour2.jpg" alt="马尔代夫6日自助游">
-<!--			<img th:src="@{${LvYou.fengmianUrl}}" th:onclick="showPdf([[${LvYou.pdfUrl}]])" alt="热门旅游">-->
-			<figcaption>
+
+		<figure th:each="LvYou :${list}" th:onclick="showPdf([[${LvYou.pdfUrl}]])">
+			<img th:src="@{${LvYou.fengmianUrl}}" alt="热门旅游">
+			<figcaption >
 				<article>
 					<header>
 						<hgroup>
@@ -67,7 +70,7 @@
 					</header>
 
 					<div class="buy">
-						<div class="price">¥<strong th:text="${LvYou.PRICE}">2864</strong></div>
+						<div class="price">₱<strong th:text="${LvYou.PRICE}">2864</strong></div>
 					</div>
 
 				</article>
@@ -130,6 +133,14 @@
 
 		// var prefix = ctx + "system/you/indexLvYouInfo?needMore=123";
 		window.location.href = "indexLvYouInfo?tagName="+tagName+"&isUS=true";
+	}
+
+	function showPdf(fileName) {
+		var prefix = ctx + "system/you";
+		var data = prefix + "/showPdf?fileName=" + fileName;
+		var pdfURl = "/js/pdfjs/web/viewer.html?file=" + encodeURIComponent(data);
+		window.open(pdfURl);
+
 	}
 
 

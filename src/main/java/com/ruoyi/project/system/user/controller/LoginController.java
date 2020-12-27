@@ -77,7 +77,7 @@ public class LoginController extends BaseController {
 
 
     @GetMapping("/indexLvYouInfo")
-    public String indexLvYouInfo(HttpServletRequest request, HttpServletResponse response, ModelMap mmap, @RequestParam(value = "needMore", required = false) String needMore, @RequestParam(value = "tagName", required = false) String tagName,@RequestParam(value = "isUS",required = false)  String isUS) {
+    public String indexLvYouInfo(HttpServletRequest request, HttpServletResponse response, ModelMap mmap, @RequestParam(value = "needMore", required = false) String needMore, @RequestParam(value = "tagName", required = false) String tagName,@RequestParam(value = "tagName2", required = false) String tagName2,@RequestParam(value = "isUS",required = false)  String isUS) {
         boolean showMoreFlag = true;
         List<LvYou> list = null;
         if (StringUtils.isEmpty(needMore)) {
@@ -93,12 +93,24 @@ public class LoginController extends BaseController {
                 list = lvYouService.selectByUSTag(tagName);
             }else {
                 list = lvYouService.selectByTag(tagName);
-
             }
+
+        }
+
+        if (StringUtils.isNotEmpty(tagName2)) {
+            showMoreFlag = false;
+
+            if (StringUtils.isNotEmpty(isUS)) {
+                list = lvYouService.selectByUSTag2(tagName2);
+            }else {
+                list = lvYouService.selectByTag2(tagName2);
+            }
+
         }
 
 
         List<String> tags  = null;
+        List<String> tags2  = null;
         if (StringUtils.isNotEmpty(isUS)) {
             tags= lvYouService.getUSTags();
         }else {
@@ -106,9 +118,18 @@ public class LoginController extends BaseController {
 
         }
 
+        if (StringUtils.isNotEmpty(isUS)) {
+            tags2= lvYouService.getUSTags2();
+        }else {
+            tags2= lvYouService.getTags2();
+
+        }
+
+
 
         mmap.addAttribute("list", list);
         mmap.addAttribute("tags", tags);
+        mmap.addAttribute("tags2", tags2);
         mmap.addAttribute("showMoreFlag", showMoreFlag);
 
         if (StringUtils.isNotEmpty(isUS)) {

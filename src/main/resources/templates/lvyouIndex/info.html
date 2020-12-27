@@ -2,134 +2,149 @@
 <html lang="zh" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-	<meta charset="utf-8">
-	<title>资讯</title>
-	<link th:href="@{/css/basic.css}" rel="stylesheet">
-	<link th:href="@{/css/sidebar.css}" rel="stylesheet">
-	<link th:href="@{/css/info.css}" rel="stylesheet">
-	<link th:href="@{/css/index.css}" rel="stylesheet">
-	<script th:src="@{/js/jquery.min.js}"></script>
-	<script th:inline="javascript"> var ctx = [[@{/}]]; var captchaType = [[${captchaType}]];</script>
+    <meta charset="utf-8">
+    <title>资讯</title>
+    <link th:href="@{/css/basic.css}" rel="stylesheet">
+    <link th:href="@{/css/sidebar.css}" rel="stylesheet">
+    <link th:href="@{/css/info.css}" rel="stylesheet">
+    <link th:href="@{/css/index.css}" rel="stylesheet">
+    <script th:src="@{/js/jquery.min.js}"></script>
+    <script th:inline="javascript"> var ctx = [[@{/}]]; var captchaType = [[${captchaType}]];</script>
+
 </head>
 <body>
 <header class="g-hd">
-	<div class="hd_wrap">
-		<h1 class="u-logo"><a href="index2.html"></a></h1>
-		<nav class="m-nav">
-			<h2  class="h_none">网站导航</h2>
-			<ul>
-				<li>
-					<a href="/index2">首页</a>
-				</li>
-				<li>
-					<a  class="active"  href="/indexLvYouInfo">旅游资讯</a>
-				</li>
+    <div class="hd_wrap">
+        <h1 class="u-logo"><a href="index2.html"></a></h1>
+        <nav class="m-nav">
+            <h2 class="h_none">网站导航</h2>
+            <ul>
+                <li>
+                    <a href="/index2">首页</a>
+                </li>
+                <li>
+                    <a class="active" href="/indexLvYouInfo">旅游资讯</a>
+                </li>
 
-				<li>
-					<a href="/indexAbout">公司简介</a>
-				</li>
-				</li>
+                <li>
+                    <a href="/indexAbout">公司简介</a>
+                </li>
+                </li>
 
-			</ul>
-		</nav>
-	</div>
+            </ul>
+        </nav>
+    </div>
 </header>
 <div class="m-hdLine">
-	<div class="center">
-		<hgroup>
-			<h2>旅游资讯</h2>
-			<h3>介绍各种最新旅游信息、资讯要闻、景点攻略等</h3>
-		</hgroup>
-	</div>
+    <div class="center">
+        <hgroup>
+            <h2>旅游资讯</h2>
+            <h3>介绍各种最新旅游信息、资讯要闻、景点攻略等</h3>
+        </hgroup>
+    </div>
 </div>
 
 <div class="g-mn">
-	<div class="list infomation">
-		<div class="infor">
-			<ul class="left">
-				<li><a href="##">热门推荐</a></li>
-			</ul>
-			<ul class="right">
-				<li><a class="selected" href="##">推荐</a></li>
-			</ul>
-		</div>
-		<figure th:each="LvYou :${list}">
-			<img src="img/tour2.jpg" alt="马尔代夫6日自助游">
-<!--			<img th:src="@{${LvYou.fengmianUrl}}" th:onclick="showPdf([[${LvYou.pdfUrl}]])" alt="热门旅游">-->
-			<figcaption>
-				<article>
-					<header>
-						<hgroup>
+    <div class="list infomation">
+        <div class="infor" style=" overflow: auto;height: 100%;border-collapse: 0px">
+            <ul class="left" th:each="sb :${tags2}">
+                <li><a href="##" th:text="${sb}" th:onclick="searchTag([[${sb}]])">热门推荐</a></li>
+            </ul>
+            <!--			<ul class="right">-->
+            <!--				<li><a class="selected" href="##">推荐</a></li>-->
+            <!--			</ul>-->
+        </div>
+        <figure th:each="LvYou :${list}" th:onclick="showPdf([[${LvYou.pdfUrl}]])">
+            <!--            <img src="img/tour2.jpg" alt="马尔代夫6日自助游" th:onclick="showPdf([[${LvYou.pdfUrl}]])">-->
+            <img th:src="@{${LvYou.fengmianUrl}}" th:onclick="showPdf([[${LvYou.pdfUrl}]])" alt="热门旅游">
+            <figcaption >
+                <figcaption>
+                    <article>
+                        <header>
+                            <hgroup>
 
-							<h2 th:text="${LvYou.TITLE}">曼谷-芭提雅6日游</h2>
-							<h3 th:text="${LvYou.lvyouDesc}">包团特惠，超丰富景点，升级1晚国五，无自费，赠送600元成人券...</h3>
-						</hgroup>
-					</header>
+                                <h2 th:text="${LvYou.TITLE}">曼谷-芭提雅6日游</h2>
+                                <h3 th:text="${LvYou.lvyouDesc}">包团特惠，超丰富景点，升级1晚国五，无自费，赠送600元成人券...</h3>
+                            </hgroup>
+                        </header>
 
-					<div class="buy">
-						<div class="price">¥<strong th:text="${LvYou.PRICE}">2864</strong></div>
-					</div>
+                        <div class="buy">
+                            <div class="price">₱<strong th:text="${LvYou.PRICE}">2864</strong></div>
+                        </div>
 
-				</article>
-			</figcaption>
-		</figure>
-<!--		<figure class="tour">-->
-<!--			<img src="img/tour2.jpg" alt="马尔代夫6日自助游">-->
-<!--			<figcaption>-->
-<!--				<article>-->
-<!--					<header>-->
-<!--						<hgroup>-->
-<!--							<h2>马尔代夫6日自助游</h2>-->
-<!--							<h3>双鱼岛Olhuveli4晚，上海出发，机+酒 包含:早晚餐+快艇...</h3>-->
-<!--						</hgroup>-->
-<!--					</header>-->
-<!--					<ol>-->
-<!--						<li><mark>交通</mark> 春秋航空,杭州出发,无需转机</li>-->
-<!--						<li><mark>团期</mark> 11/01、11/03、11/08...</li>-->
-<!--					</ol>-->
-<!--					<div class="buy">-->
-<!--						<div class="price">¥<strong>8039</strong> <s>¥9980</s></div>-->
-<!--						<div class="reserve"><a href="###">立即抢购</a></div>-->
-<!--					</div>-->
-<!--					<div class="type">出境长线</div>-->
-<!--					<div class="disc"><span>7.7折</span></div>-->
-<!--					<footer>本团游由亿万旅行社赞助提供，截止于<time>2015-10-10</time></footer>-->
-<!--				</article>-->
-<!--			</figcaption>-->
-<!--		</figure>-->
-
-
-		<div class="more" th:if="${showMoreFlag}"><a onclick="showMore()" >加载更多...</a></div>
-
-	</div>
+                    </article>
+                </figcaption>
+        </figure>
+        <!--		<figure class="tour">-->
+        <!--			<img src="img/tour2.jpg" alt="马尔代夫6日自助游">-->
+        <!--			<figcaption>-->
+        <!--				<article>-->
+        <!--					<header>-->
+        <!--						<hgroup>-->
+        <!--							<h2>马尔代夫6日自助游</h2>-->
+        <!--							<h3>双鱼岛Olhuveli4晚，上海出发，机+酒 包含:早晚餐+快艇...</h3>-->
+        <!--						</hgroup>-->
+        <!--					</header>-->
+        <!--					<ol>-->
+        <!--						<li><mark>交通</mark> 春秋航空,杭州出发,无需转机</li>-->
+        <!--						<li><mark>团期</mark> 11/01、11/03、11/08...</li>-->
+        <!--					</ol>-->
+        <!--					<div class="buy">-->
+        <!--						<div class="price">¥<strong>8039</strong> <s>¥9980</s></div>-->
+        <!--						<div class="reserve"><a href="###">立即抢购</a></div>-->
+        <!--					</div>-->
+        <!--					<div class="type">出境长线</div>-->
+        <!--					<div class="disc"><span>7.7折</span></div>-->
+        <!--					<footer>本团游由亿万旅行社赞助提供，截止于<time>2015-10-10</time></footer>-->
+        <!--				</article>-->
+        <!--			</figcaption>-->
+        <!--		</figure>-->
 
 
-	<aside class="m-sidebar">
+        <div class="more" th:if="${showMoreFlag}"><a onclick="showMore()">加载更多...</a></div>
 
-		<div class="recommend content">
-			<h2>景点推荐</h2>
-			<div class="tag">
-				<ul th:each="sb :${tags}" >
-					<li><a href="###"  th:text="${sb}" th:onclick="searchTag([[${sb}]])">曼谷(12)</a></li>
-<!--					<li><a href="###">东京(5)</a></li>-->
+    </div>
 
-				</ul>
-			</div>
-		</div>
 
-	</aside>
+    <aside class="m-sidebar">
+
+        <div class="recommend content">
+            <h2>景点推荐</h2>
+            <div class="tag">
+                <ul th:each="sb :${tags}">
+                    <li><a href="###" th:text="${sb}" th:onclick="searchTag([[${sb}]])">曼谷(12)</a></li>
+                    <!--					<li><a href="###">东京(5)</a></li>-->
+
+                </ul>
+            </div>
+        </div>
+
+    </aside>
 </div>
 
 <script>
-	function showMore() {
-		// var prefix = ctx + "system/you/indexLvYouInfo?needMore=123";
-		window.location.href = "indexLvYouInfo?needMore=123";
-	}
+    function showMore() {
+        // var prefix = ctx + "system/you/indexLvYouInfo?needMore=123";
+        window.location.href = "indexLvYouInfo?needMore=123";
+    }
 
-	function searchTag(tagName) {
-		// var prefix = ctx + "system/you/indexLvYouInfo?needMore=123";
-		window.location.href = "indexLvYouInfo?tagName="+tagName;
-	}
+    function searchTag(tagName) {
+        // var prefix = ctx + "system/you/indexLvYouInfo?needMore=123";
+        window.location.href = "indexLvYouInfo?tagName=" + tagName;
+    }
+
+    function searchTag(tagName2) {
+        // var prefix = ctx + "system/you/indexLvYouInfo?needMore=123";
+        window.location.href = "indexLvYouInfo?tagName2=" + tagName2;
+    }
+
+    function showPdf(fileName) {
+        var prefix = ctx + "system/you";
+        var data = prefix + "/showPdf?fileName=" + fileName;
+        var pdfURl = "/js/pdfjs/web/viewer.html?file=" + encodeURIComponent(data);
+        window.open(pdfURl);
+
+    }
 
 
 </script>

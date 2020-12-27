@@ -128,4 +128,26 @@ public class LvYouServiceImpl implements ILvYouService
         return lvYouMapper.selectByUSTitleKey(tagName);
 
     }
+
+    @Override
+    public List<LvYou> selectByTag2(String tagName2) {
+        return lvYouMapper.selectByTag2(tagName2);
+    }
+
+    @Override
+    public List<LvYou> selectByUSTag2(String tagName2) {
+        return lvYouMapper.selectByUSTag2(tagName2);
+    }
+
+    @Override
+    public List<String> getUSTags2() {
+        return lvYouMapper.getUSTags2();
+    }
+
+    @Override
+    public List<String> getTags2() {
+        return lvYouMapper.getTags2();
+    }
+
+
 }

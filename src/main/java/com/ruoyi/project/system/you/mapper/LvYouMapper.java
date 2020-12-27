@@ -71,4 +71,12 @@ public interface LvYouMapper
     List<String> getUSTags();
 
     List<LvYou> selectByUSTitleKey(String tagName);
+
+    List<LvYou> selectByTag2(@Param(value = "searchKey") String searchKey);
+
+    List<LvYou> selectByUSTag2(@Param(value = "searchKey") String searchKey);
+
+    List<String> getUSTags2();
+
+    List<String> getTags2();
 }

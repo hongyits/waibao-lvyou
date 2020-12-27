@@ -128,6 +128,8 @@
     function showPdf(fileName) {
         var prefix = ctx + "system/you";
         var data = prefix + "/showPdf?fileName=" + fileName;
+
+
         var pdfURl = "/js/pdfjs/web/viewer.html?file=" + encodeURIComponent(data);
         window.open(pdfURl);
         // $("#haha").attr("src",pdfURl); //显示方式2
