@@ -19,6 +19,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <result property="locationNameUs"    column="LOCATION_NAME_US"    />
         <result property="tag"    column="TAG"    />
         <result property="tagUs"    column="TAG_US"    />
+        <result property="CATEGORY"    column="CATEGORY"    />
+        <result property="tiaozhuanUrl"    column="TIAOZHUAN_URL"    />
     </resultMap>
 
     <sql id="selectLvYouVo">
@@ -39,6 +41,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="pdfUrlUs != null  and pdfUrlUs != ''"> and PDF_URL_US = #{pdfUrlUs}</if>
             <if test="titleUs != null  and titleUs != ''"> and TITLE_US = #{titleUs}</if>
             <if test="locationNameUs != null  and locationNameUs != ''"> and LOCATION_NAME_US = #{locationNameUs}</if>
+            <if test="CATEGORY != null  and CATEGORY != ''"> and CATEGORY = #{CATEGORY}</if>
+            <if test="tiaozhuanUrl != null  and tiaozhuanUrl != ''"> and TIAOZHUAN_URL = #{tiaozhuanUrl}</if>
         </where>
     </select>
     
@@ -64,6 +68,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="locationNameUs != null">LOCATION_NAME_US,</if>
             <if test="tag != null">TAG,</if>
             <if test="tagUs != null">TAG_US,</if>
+            <if test="CATEGORY != null">CATEGORY,</if>
+            <if test="tiaozhuanUrl != null">TIAOZHUAN_URL,</if>
          </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="lvyouId != null">#{lvyouId},</if>
@@ -80,6 +86,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="locationNameUs != null">#{locationNameUs},</if>
             <if test="tag != null">#{tag},</if>
             <if test="tagUs != null">#{tagUs},</if>
+            <if test="CATEGORY != null">#{CATEGORY},</if>
+            <if test="tiaozhuanUrl != null">#{tiaozhuanUrl},</if>
          </trim>
     </insert>
 
@@ -99,6 +107,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="locationNameUs != null">LOCATION_NAME_US = #{locationNameUs},</if>
             <if test="tag != null">TAG = #{tag},</if>
             <if test="tagUs != null">TAG_US = #{tagUs},</if>
+            <if test="CATEGORY != null">CATEGORY = #{CATEGORY},</if>
+            <if test="tiaozhuanUrl != null">TIAOZHUAN_URL = #{tiaozhuanUrl}</if>
         </trim>
         where LVYOU_ID = #{lvyouId}
     </update>
@@ -117,6 +127,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <select id="selectAll" resultMap="LvYouResult">
 
         <include refid="selectLvYouVo"/>
+
+
+    </select>
+
+
+    <select id="selectallByCategory" resultMap="LvYouResult">
+
+        <include refid="selectLvYouVo"/>
+
+        where CATEGORY = #{CATEGORY}
 
 
     </select>

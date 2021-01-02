@@ -66,7 +66,7 @@ public class LoginController extends BaseController {
         }
         mmap.put("lvyouInfo", list);
         if (StringUtils.isNotEmpty(isUS)){
-            return "lvyouIndex/indexUS";
+            return "lvyouIndex/ind¡exUS";
 
         }else {
             return "lvyouIndex/index";

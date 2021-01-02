@@ -149,5 +149,10 @@ public class LvYouServiceImpl implements ILvYouService
         return lvYouMapper.getTags2();
     }
 
+    @Override
+    public List<LvYou> selectallByCategory(String CATEGORY) {
+        return lvYouMapper.selectallByCategory(CATEGORY);
+    }
+
 
 }

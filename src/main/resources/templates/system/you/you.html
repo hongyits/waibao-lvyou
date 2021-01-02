@@ -6,37 +6,10 @@
 <body class="gray-bg">
 <div class="container-div">
     <div class="row">
-        <!--            <div class="col-sm-12 search-collapse">-->
-        <!--                <form id="formId">-->
-        <!--                    <div class="select-list">-->
-        <!--                        <ul>-->
-        <!--                            <li>-->
-        <!--                                <label>：</label>-->
-        <!--                                <input type="text" name="PRICE"/>-->
-        <!--                            </li>-->
-        <!--                            <li>-->
-        <!--                                <label>：</label>-->
-        <!--                                <input type="text" name="crtDatetime"/>-->
-        <!--                            </li>-->
-        <!--                            <li>-->
-        <!--                                <label>：</label>-->
-        <!--                                <input type="text" name="TITLE"/>-->
-        <!--                            </li>-->
-        <!--                            <li>-->
-        <!--                                <label>：</label>-->
-        <!--                                <input type="text" name="locationName"/>-->
-        <!--                            </li>-->
-        <!--                            <li>-->
-        <!--                                <a class="btn btn-primary btn-rounded btn-sm" onclick="$.table.search()"><i class="fa fa-search"></i>&nbsp;搜索</a>-->
-        <!--                                <a class="btn btn-warning btn-rounded btn-sm" onclick="$.form.reset()"><i class="fa fa-refresh"></i>&nbsp;重置</a>-->
-        <!--                            </li>-->
-        <!--                        </ul>-->
-        <!--                    </div>-->
-        <!--                </form>-->
-        <!--            </div>-->
-
+        <input id="catetegoryName" th:value="${catetegoryName}"  style="display: none">
         <div class="btn-group-sm" id="toolbar" role="group">
-            <a class="btn btn-success" onclick="$.operate.add()" shiro:hasPermission="system:you:add">
+<!--            <a class="btn btn-success" onclick="$.operate.add2('111','2222')" shiro:hasPermission="system:you:add">-->
+            <a class="btn btn-success" th:onclick="gotoAdd([[${catetegoryName}]])" shiro:hasPermission="system:you:add">
                 <i class="fa fa-plus"></i> 添加
             </a>
             <a class="btn btn-primary single disabled" onclick="$.operate.edit()" shiro:hasPermission="system:you:edit">
@@ -62,13 +35,22 @@
     var prefix = ctx + "system/you";
 
     $(function () {
+        var type = $("#catetegoryName").val();
+        var datas = {"type": type};
+        var modalName = "旅游信息上传";
+        if (type == 'jipiao'){
+            modalName = "机票信息上传";
+        }else if (type == 'jipiao'){
+
+        }
         var options = {
             url: prefix + "/list",
             createUrl: prefix + "/add",
             updateUrl: prefix + "/edit/{id}",
             removeUrl: prefix + "/remove",
             exportUrl: prefix + "/export",
-            modalName: "旅游信息上传",
+            modalName: modalName,
+            queryParams: datas,
             columns: [{
                 checkbox: true
             },
@@ -76,6 +58,17 @@
                     field: 'lvyouId',
                     title: '',
                     visible: false
+                },
+                {
+                    field: 'CATEGORY',
+                    title: '类型',
+                    formatter: function (value, row, index) {
+                        if (value == 'jipiao') {
+                            return "机票";
+                        } else if (value == 'info') {
+                            return "旅游信息";
+                        }
+                    }
                 },
                 {
                     field: 'tag',
@@ -132,6 +125,10 @@
                     title: '英文地点名称'
                 },
                 {
+                    field: 'tiaozhuanUrl',
+                    title: '图片跳转地址'
+                },
+                {
                     title: '操作',
                     align: 'center',
                     formatter: function (value, row, index) {
@@ -144,6 +141,11 @@
         };
         $.table.init(options);
     });
+
+    function gotoAdd(type) {
+        $.operate.add2('111',type);
+
+    }
 </script>
 </body>
 </html>

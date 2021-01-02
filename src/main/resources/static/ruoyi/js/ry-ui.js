@@ -1037,6 +1037,10 @@ var table = {
             	table.set();
             	$.modal.open("添加" + table.options.modalName, $.operate.addUrl(id));
             },
+            add2: function(id,type) {
+                table.set();
+                $.modal.open("添加" + table.options.modalName, $.operate.addUrl2(type));
+            },
             // 添加信息，以tab页展现
             addTab: function (id) {
             	table.set();
@@ -1051,6 +1055,10 @@ var table = {
             // 添加访问地址
             addUrl: function(id) {
             	var url = $.common.isEmpty(id) ? table.options.createUrl.replace("{id}", "") : table.options.createUrl.replace("{id}", id);
+                return url;
+            },
+            addUrl2: function(type) {
+                var url = table.options.createUrl +"?type="+type;
                 return url;
             },
             // 修改信息
@@ -1131,6 +1139,7 @@ var table = {
             },
             // 多部分上传
             MulSave: function(url, data, callback) {
+                console.log(data);
                 var config = {
                     url: url,
                     data: data,

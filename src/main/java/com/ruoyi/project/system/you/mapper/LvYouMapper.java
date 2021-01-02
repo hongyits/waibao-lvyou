@@ -79,4 +79,6 @@ public interface LvYouMapper
     List<String> getUSTags2();
 
     List<String> getTags2();
+
+    List<LvYou> selectallByCategory(@Param(value = "CATEGORY") String CATEGORY);
 }

@@ -84,4 +84,6 @@ public interface ILvYouService
     List<String> getUSTags2();
 
     List<String> getTags2();
+
+    List<LvYou> selectallByCategory(String CATEGORY);
 }

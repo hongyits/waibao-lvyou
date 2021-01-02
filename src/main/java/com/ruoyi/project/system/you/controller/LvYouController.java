@@ -16,6 +16,7 @@ import com.ruoyi.common.utils.file.OutNoGenerator;
 import com.ruoyi.framework.aspectj.lang.annotation.Log;
 import com.ruoyi.framework.config.RuoYiConfig;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.ibatis.annotations.Param;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.apache.shiro.cache.Cache;
 import org.springframework.beans.BeanUtils;
@@ -58,12 +59,14 @@ public class LvYouController extends BaseController {
     private static String defaultBaseDir = RuoYiConfig.getProfile();
 
 
-    @RequiresPermissions("system:you:view")
+    //    @RequiresPermissions("system:you:view")
     @GetMapping()
-    public String you(Model model) {
-        List<LvYou> list = lvYouService.selectAll();
+    public String you(Model model, @RequestParam(value = "type", required = false) String type) {
+//        List<LvYou> list = lvYouService.selectAll();
+        List<LvYou> list = lvYouService.selectallByCategory(type);
         //把对应的所有文件都搞成缓存
         model.addAttribute("lvyouInfo", list);
+        model.addAttribute("catetegoryName", type);
 
         return prefix + "/you";
     }
@@ -83,7 +86,8 @@ public class LvYouController extends BaseController {
     @RequiresPermissions("system:you:list")
     @PostMapping("/list")
     @ResponseBody
-    public TableDataInfo list(LvYou lvYou) {
+    public TableDataInfo list(LvYou lvYou, @RequestParam(value = "type") String type) {
+        lvYou.setCATEGORY(type);
         startPage();
         List<LvYou> list = lvYouService.selectLvYouList(lvYou);
         return getDataTable(list);
@@ -132,7 +136,8 @@ public class LvYouController extends BaseController {
      * 新增旅游信息上传
      */
     @GetMapping("/add")
-    public String add() {
+    public String add(Model model, @RequestParam(value = "type") String type) {
+        model.addAttribute("catetegoryName", type);
         return prefix + "/add";
     }
 
@@ -166,7 +171,6 @@ public class LvYouController extends BaseController {
     @ResponseBody
     public AjaxResult editSave(LvYou lvYou, @RequestParam("fengmianFile") MultipartFile fengmianFile, @RequestParam("pdfFile") MultipartFile pdfFile, @RequestParam("usPdfFile") MultipartFile usPdfFile) {
         try {
-
             if (!fengmianFile.isEmpty()) { //只允许上传图片
 //                String fengmianName = FileUploadUtils.upload(RuoYiConfig.getAvatarPath(), fengmianFile);
                 String fengmianName = FileUploadUtils.uploadFixed(RuoYiConfig.getAvatarPath(), fengmianFile);
@@ -220,8 +224,8 @@ public class LvYouController extends BaseController {
 //        File file = new File("/Users/huanghongyuan/IdeaProjects/waibao-lvyou/uploadPath/2.pdf");//test
         File file = new File(pdfUrl);
         boolean exists = file.exists();
-        log.info("%s",exists);
-        log.info("%s",file.getPath());
+        log.info("%s", exists);
+        log.info("%s", file.getPath());
         if (file.exists()) {
             byte[] data = null;
             FileInputStream input = null;

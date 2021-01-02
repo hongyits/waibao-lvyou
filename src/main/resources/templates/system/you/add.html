@@ -1,135 +1,119 @@
 <!DOCTYPE html>
-<html lang="zh" xmlns:th="http://www.thymeleaf.org" >
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <th:block th:include="include :: header('新增旅游信息上传')" />
+    <th:block th:include="include :: header('新增旅游信息上传')"/>
 </head>
 <body class="white-bg">
-    <div class="wrapper wrapper-content animated fadeInRight ibox-content">
-        <form class="form-horizontal m" id="form-you-add">
-            <div class="form-group">
-                <label class="col-sm-3 control-label">种类描述：</label>
-                <div class="col-sm-8">
-                    <input name="tag" class="form-control" type="text">
-                </div>
+<div class="wrapper wrapper-content animated fadeInRight ibox-content">
+    <form class="form-horizontal m" id="form-you-add">
+        <input id="catetegoryName" name="CATEGORY" th:value="${catetegoryName}" style="display: none">
+        <div class="form-group">
+            <label class="col-sm-3 control-label">种类描述：</label>
+            <div class="col-sm-8">
+                <input name="tag" class="form-control" type="text">
             </div>
+        </div>
 
-            <div class="form-group">
-                <label class="col-sm-3 control-label">种类-英文描述：</label>
-                <div class="col-sm-8">
-                    <textarea name="tagUs" class="form-control"></textarea>
-                </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">种类-英文描述：</label>
+            <div class="col-sm-8">
+                <textarea name="tagUs" class="form-control"></textarea>
             </div>
+        </div>
 
 
-            <div class="form-group">
-                <label class="col-sm-3 control-label">标题描述：</label>
-                <div class="col-sm-8">
-                    <input name="TITLE" class="form-control" type="text">
-                </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">标题描述：</label>
+            <div class="col-sm-8">
+                <input name="TITLE" class="form-control" type="text">
             </div>
+        </div>
 
-            <div class="form-group">
-                <label class="col-sm-3 control-label">标题-英文描述：</label>
-                <div class="col-sm-8">
-                    <textarea name="titleUs" class="form-control"></textarea>
-                </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">标题-英文描述：</label>
+            <div class="col-sm-8">
+                <textarea name="titleUs" class="form-control"></textarea>
             </div>
+        </div>
 
 
-
-
-            <div class="form-group">
-                <label class="col-sm-3 control-label">地点描述：</label>
-                <div class="col-sm-8">
-                    <input name="locationName" class="form-control" type="text">
-                </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">地点描述：</label>
+            <div class="col-sm-8">
+                <input name="locationName" class="form-control" type="text">
             </div>
+        </div>
 
-            <div class="form-group">
-                <label class="col-sm-3 control-label">地点-英文描述：</label>
-                <div class="col-sm-8">
-                    <textarea name="locationNameUs" class="form-control"></textarea>
-                </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">地点-英文描述：</label>
+            <div class="col-sm-8">
+                <textarea name="locationNameUs" class="form-control"></textarea>
             </div>
+        </div>
 
-            <div class="form-group">
-                <label class="col-sm-3 control-label">价格：</label>
-                <div class="col-sm-8">
-                    <input name="PRICE" class="form-control" type="text">
-                </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">价格：</label>
+            <div class="col-sm-8">
+                <input name="PRICE" class="form-control" type="text">
             </div>
+        </div>
 
-            <div class="form-group">
-                <label class="col-sm-3 control-label">旅游描述：</label>
-                <div class="col-sm-8">
-                    <textarea name="lvyouDesc" class="form-control"></textarea>
-                </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">旅游描述：</label>
+            <div class="col-sm-8">
+                <textarea name="lvyouDesc" class="form-control"></textarea>
             </div>
+        </div>
 
 
-
-
-            <div class="form-group">
-                <label class="col-sm-3 control-label">旅游-英文描述：</label>
-                <div class="col-sm-8">
-                    <textarea name="lvyouDescUs" class="form-control"></textarea>
-                </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">旅游-英文描述：</label>
+            <div class="col-sm-8">
+                <textarea name="lvyouDescUs" class="form-control"></textarea>
             </div>
+        </div>
 
 
-
-
-            <!-- 另外上传-->
-            <div>
-                <label class="col-sm-3 control-label">封面file：</label>
-                <div class="col-sm-8">
-                    <input type="file" name="fengmianFile" class="form-control">
-                </div>
+        <!-- 另外上传-->
+        <div>
+            <label class="col-sm-3 control-label">封面file：</label>
+            <div class="col-sm-8">
+                <input type="file" name="fengmianFile" class="form-control">
             </div>
+        </div>
 
-            <div>
-                <label class="col-sm-3 control-label">pdfFile：</label>
-                <div class="col-sm-8">
-                    <input type="file" name="pdfFile" class="form-control">
-                </div>
+        <div>
+            <label class="col-sm-3 control-label">pdfFile：</label>
+            <div class="col-sm-8">
+                <input type="file" name="pdfFile" class="form-control">
             </div>
+        </div>
 
-            <div>
-                <label class="col-sm-3 control-label">英文pdfFile：</label>
-                <div class="col-sm-8">
-                    <input type="file" name="usPdfFile" class="form-control">
-                </div>
+        <div>
+            <label class="col-sm-3 control-label">英文pdfFile：</label>
+            <div class="col-sm-8">
+                <input type="file" name="usPdfFile" class="form-control">
             </div>
-        </form>
-    </div>
-    <th:block th:include="include :: footer" />
-    <script th:inline="javascript">
-        // var prefix = ctx + "system/you"
-        // $("#form-you-add").validate({
-        //     focusCleanup: true
-        // });
-        //
-        // function submitHandler() {
-        //     if ($.validate.form()) {
-        //         $.operate.save(prefix + "/add", $('#form-you-add').serialize());
-        //     }
-        // }
+        </div>
+    </form>
+</div>
+<th:block th:include="include :: footer"/>
+<script th:inline="javascript">
+    var prefix = ctx + "system/you";
+    $("#form-you-edit").validate({
+        focusCleanup: true
+    });
+    var type = $("#catetegoryName").val();
 
-        var prefix = ctx + "system/you";
-        $("#form-you-edit").validate({
-            focusCleanup: true
-        });
-
-        function submitHandler() {
-            if ($.validate.form()) {
-                var formdata = new FormData(document.getElementById("form-you-add"));
-                // $.operate.MulSave(prefix + "/edit", $('#form-you-edit').serialize());
-                $.operate.MulSave(prefix + "/edit", formdata);
-            }
+    function submitHandler() {
+        if ($.validate.form()) {
+            var formdata = new FormData(document.getElementById("form-you-add"));
+            formdata.TITLE = type;
+            // $.operate.MulSave(prefix + "/edit", $('#form-you-edit').serialize());
+            $.operate.MulSave(prefix + "/edit", formdata);
         }
-    </script>
-
-
+    }
+</script>
 
 
 </body>

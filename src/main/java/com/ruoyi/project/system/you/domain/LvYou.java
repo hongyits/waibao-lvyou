@@ -89,5 +89,9 @@ public class LvYou {
 
     private String tagUs;
 
+    private String CATEGORY;
+
+    private String tiaozhuanUrl;
+
 
 }
