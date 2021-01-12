@@ -74,7 +74,7 @@ public class LvYouController extends BaseController {
 
     @RequestMapping(value = "/searchByList", method = RequestMethod.GET)
     public String searchByList(@RequestParam(value = "searchKey") String searchKey, HttpServletRequest request, ModelMap mmap) {
-        List<LvYou> list = lvYouService.selectByTitleKey(searchKey);
+        List<LvYou> list = lvYouService.selectByTitleKey(searchKey,null);
         mmap.put("lvyouInfo", list);
         return "lvyouIndex/index";
 
@@ -100,7 +100,7 @@ public class LvYouController extends BaseController {
     @GetMapping("/listAll")
 //    @ResponseBody
     public List<LvYou> listAll(ModelMap mmap) {
-        List<LvYou> list = lvYouService.selectAll();
+        List<LvYou> list = lvYouService.selectAll(null);
         //把对应的所有文件都搞成缓存
         for (int i = 0; i < list.size(); i++) {
             LvYou lvYou = list.get(i);

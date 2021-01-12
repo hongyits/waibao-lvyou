@@ -23,8 +23,15 @@
                     <a class="active" href="/index2">首页</a>
                 </li>
                 <li>
-                    <a href="/indexLvYouInfo">旅游资讯</a>
+                    <a href="/indexLvYouInfo?type=info">旅游资讯</a>
                 </li>
+                <li>
+                    <a href="/indexLvYouInfo?type=jipiao">机票资讯</a>
+                </li>
+                <li>
+                    <a  href="/indexLvYouInfo?type=zuche">马尼拉租车</a>
+                </li>
+
                 <li>
                     <a href="/indexAbout">公司简介</a>
                 </li>
@@ -124,11 +131,11 @@
         var prefix = ctx + "system/you";
         window.location.href = ctx + "system/you/searchByList?searchKey=" + trimText;
     }
-
-    function showPdf(fileName) {
-        var prefix = ctx + "system/you";
         var data = prefix + "/showPdf?fileName=" + fileName;
 
+
+        function showPdf(fileName) {
+            var prefix = ctx + "system/you";
 
         var pdfURl = "/js/pdfjs/web/viewer.html?file=" + encodeURIComponent(data);
         window.open(pdfURl);

@@ -1,3 +1,18 @@
+# 项目相关配置
+ruoyi:
+    # 名称
+    name: RuoYi
+    # 版本
+    version: 4.5.1
+    # 版权年份
+    copyrightYear: 2019
+    # 实例演示开关
+    demoEnabled: true
+    # 文件路径 示例（ Windows配置D:/ruoyi/uploadPath，Linux配置 /home/ruoyi/uploadPath）
+    profile: /Users/huanghongyuan/IdeaProjects/waibao-lvyou/uploadPath
+    # 获取ip地址开关
+    addressEnabled: false
+
 # 数据源配置
 spring:
     datasource:
@@ -60,3 +75,5 @@ spring:
                 wall:
                     config:
                         multi-statement-allow: true
+server:
+    port: 8888

@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.ruoyi.common.utils.CacheUtils;
 import com.ruoyi.common.utils.file.Base64Utils;
 import com.ruoyi.framework.config.RuoYiConfig;
+import com.ruoyi.project.enums.LvyouCategotyEnum;
 import com.ruoyi.project.system.you.domain.LvYou;
 import com.ruoyi.project.system.you.service.ILvYouService;
 import org.apache.shiro.SecurityUtils;
@@ -54,45 +55,46 @@ public class LoginController extends BaseController {
 
 
     @GetMapping("/index2")
-    public String index2(HttpServletRequest request, HttpServletResponse response, ModelMap mmap,@RequestParam(value = "isUS",required = false)  String isUS) {
-        List<LvYou> list = lvYouService.selectAll();
-        //把对应的所有文件都搞成缓存
-        for (int i = 0; i < list.size(); i++) {
-            LvYou lvYou = list.get(i);
-            String fengmianUrl = lvYou.getFengmianUrl();
-            String pdfUrl = lvYou.getPdfUrl();
-            String pdfUrlUs = lvYou.getPdfUrlUs();
+    public String index2(HttpServletRequest request, HttpServletResponse response, ModelMap mmap, @RequestParam(value = "isUS", required = false) String isUS, @RequestParam(value = "type", required = false) String type) {
+        List<LvYou> list = lvYouService.selectAll(LvyouCategotyEnum.INFO.getCode());
 
-        }
         mmap.put("lvyouInfo", list);
-        if (StringUtils.isNotEmpty(isUS)){
+        if (StringUtils.isNotEmpty(isUS)) {
             return "lvyouIndex/ind¡exUS";
 
-        }else {
+        } else {
             return "lvyouIndex/index";
 
         }
     }
 
 
-
+    /**
+     * @param mmap
+     * @param needMore
+     * @param tagName
+     * @param tagName2
+     * @param isUS
+     * @param type
+     * @return
+     */
     @GetMapping("/indexLvYouInfo")
-    public String indexLvYouInfo(HttpServletRequest request, HttpServletResponse response, ModelMap mmap, @RequestParam(value = "needMore", required = false) String needMore, @RequestParam(value = "tagName", required = false) String tagName,@RequestParam(value = "tagName2", required = false) String tagName2,@RequestParam(value = "isUS",required = false)  String isUS) {
+    public String indexLvYouInfo(ModelMap mmap, @RequestParam(value = "needMore", required = false) String needMore, @RequestParam(value = "tagName", required = false) String tagName, @RequestParam(value = "tagName2", required = false) String tagName2, @RequestParam(value = "isUS", required = false) String isUS, @RequestParam(value = "type") String type) {
         boolean showMoreFlag = true;
         List<LvYou> list = null;
         if (StringUtils.isEmpty(needMore)) {
-            list = lvYouService.selectFive();
+            list = lvYouService.selectFive(type);
         } else {
             showMoreFlag = false;
-            list = lvYouService.selectAll();
+            list = lvYouService.selectAll(type);
         }
         if (StringUtils.isNotEmpty(tagName)) {
             showMoreFlag = false;
 
             if (StringUtils.isNotEmpty(isUS)) {
-                list = lvYouService.selectByUSTag(tagName);
-            }else {
-                list = lvYouService.selectByTag(tagName);
+                list = lvYouService.selectByUSTag(tagName, type);
+            } else {
+                list = lvYouService.selectByTag(tagName, type);
             }
 
         }
@@ -101,30 +103,29 @@ public class LoginController extends BaseController {
             showMoreFlag = false;
 
             if (StringUtils.isNotEmpty(isUS)) {
-                list = lvYouService.selectByUSTag2(tagName2);
-            }else {
-                list = lvYouService.selectByTag2(tagName2);
+                list = lvYouService.selectByUSTag2(tagName2, type);
+            } else {
+                list = lvYouService.selectByTag2(tagName2, type);
             }
 
         }
 
 
-        List<String> tags  = null;
-        List<String> tags2  = null;
+        List<String> tags = null;
+        List<String> tags2 = null;
         if (StringUtils.isNotEmpty(isUS)) {
-            tags= lvYouService.getUSTags();
-        }else {
-            tags= lvYouService.getTags();
+            tags = lvYouService.getUSTags(type);
+        } else {
+            tags = lvYouService.getTags(type);
 
         }
 
         if (StringUtils.isNotEmpty(isUS)) {
-            tags2= lvYouService.getUSTags2();
-        }else {
-            tags2= lvYouService.getTags2();
+            tags2 = lvYouService.getUSTags2(type);
+        } else {
+            tags2 = lvYouService.getTags2(type);
 
         }
-
 
 
         mmap.addAttribute("list", list);
@@ -132,20 +133,46 @@ public class LoginController extends BaseController {
         mmap.addAttribute("tags2", tags2);
         mmap.addAttribute("showMoreFlag", showMoreFlag);
 
-        if (StringUtils.isNotEmpty(isUS)) {
-            return "lvyouIndex/infoUS";
 
-        }else {
-            return "lvyouIndex/info";
+        if (LvyouCategotyEnum.INFO.getCode().equals(type)) {
+            if (StringUtils.isNotEmpty(isUS)) {
+                return "lvyouIndex/infoUS";
+
+            } else {
+                return "lvyouIndex/info";
+
+            }
+
+
+        } else if (LvyouCategotyEnum.JIPIAO.getCode().equals(type)) {
+            if (StringUtils.isNotEmpty(isUS)) {
+                return "lvyouIndex/ticketInfoUS";
+
+            } else {
+                return "lvyouIndex/ticketInfo";
+
+            }
+
+        } else if (LvyouCategotyEnum.ZUCHE.getCode().equals(type)) {
+            if (StringUtils.isNotEmpty(isUS)) {
+                return "lvyouIndex/zucheInfoUS";
+
+            } else {
+                return "lvyouIndex/zucheInfo";
+
+            }
 
         }
+        return "lvyouIndex/info";
+
+
     }
 
     @GetMapping("/indexAbout")
-    public String indexAbout(HttpServletRequest request, HttpServletResponse response, ModelMap mmap,@RequestParam(value = "isUS",required = false)  String isUS) {
+    public String indexAbout(HttpServletRequest request, HttpServletResponse response, ModelMap mmap, @RequestParam(value = "isUS", required = false) String isUS) {
         if (StringUtils.isNotEmpty(isUS)) {
             return "lvyouIndex/aboutUS";
-        }else {
+        } else {
             return "lvyouIndex/about";
 
         }

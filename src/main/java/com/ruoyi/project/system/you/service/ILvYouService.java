@@ -63,27 +63,27 @@ public interface ILvYouService
      * 获取所有
      * @return
      */
-    List<LvYou> selectAll();
+    List<LvYou> selectAll(String type);
 
-    List<LvYou> selectByTitleKey(String searchKey);
+    List<LvYou> selectByTitleKey(String searchKey,String type);
 
-    List<LvYou> selectFive();
+    List<LvYou> selectFive(String type);
 
-    List<String> getTags();
+    List<String> getTags(String type);
 
-    List<LvYou> selectByTag(String tagName);
+    List<LvYou> selectByTag(String tagName,String type);
 
-    List<String> getUSTags();
+    List<String> getUSTags(String type);
 
-    List<LvYou> selectByUSTag(String tagName);
+    List<LvYou> selectByUSTag(String tagName,String type);
 
-    List<LvYou> selectByTag2(String tagName2);
+    List<LvYou> selectByTag2(String tagName2,String type);
 
-    List<LvYou> selectByUSTag2(String tagName2);
+    List<LvYou> selectByUSTag2(String tagName2,String type);
 
-    List<String> getUSTags2();
+    List<String> getUSTags2(String type);
 
-    List<String> getTags2();
+    List<String> getTags2(String type);
 
     List<LvYou> selectallByCategory(String CATEGORY);
 }

@@ -23,13 +23,13 @@
                     <a href="/index2">首页</a>
                 </li>
                 <li>
-                    <a  class="active" href="/indexLvYouInfo?type=info">旅游资讯</a>
+                    <a  href="/indexLvYouInfo?type=info">旅游资讯</a>
                 </li>
                 <li>
-                    <a href="/indexLvYouInfo?type=jipiao">机票资讯</a>
+                    <a  href="/indexLvYouInfo?type=jipiao">机票资讯</a>
                 </li>
                 <li>
-                    <a  href="/indexLvYouInfo?type=zuche">马尼拉租车</a>
+                    <a  class="active"  href="/indexLvYouInfo?type=zuche">马尼拉租车</a>
                 </li>
 
                 <li>
@@ -44,8 +44,8 @@
 <div class="m-hdLine">
     <div class="center">
         <hgroup>
-            <h2>旅游资讯</h2>
-            <h3>介绍各种最新旅游信息、资讯要闻、景点攻略等</h3>
+            <h2>租车资讯</h2>
+            <h3>介绍各种最新租车信息</h3>
         </hgroup>
     </div>
 </div>
@@ -114,7 +114,7 @@
     <aside class="m-sidebar">
 
         <div class="recommend content">
-            <h2>景点推荐</h2>
+            <h2>租车推荐</h2>
             <div class="tag">
                 <ul th:each="sb :${tags}">
                     <li><a href="###" th:text="${sb}" th:onclick="searchTag([[${sb}]])">曼谷(12)</a></li>
@@ -140,7 +140,7 @@
 
     function searchTag(tagName2) {
         // var prefix = ctx + "system/you/indexLvYouInfo?needMore=123";
-        window.location.href = "indexLvYouInfo?tagName2=" + tagName2;
+        window.location.href = "indexLvYouInfo?type=zuche&tagName2=" + tagName2;
     }
 
     function showPdf(fileName) {

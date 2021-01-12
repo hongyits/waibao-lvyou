@@ -60,25 +60,25 @@ public interface LvYouMapper
      */
     public int deleteLvYouByIds(String[] lvyouIds);
 
-    List<LvYou> selectAll();
+    List<LvYou> selectAll(@Param(value = "type") String type);
 
-    List<LvYou> selectByTitleKey(@Param(value = "searchKey") String searchKey);
+    List<LvYou> selectByTitleKey(@Param(value = "searchKey") String searchKey,@Param(value = "type") String type);
 
-    List<LvYou> selectFive();
+    List<LvYou> selectFive(@Param(value = "type") String type);
 
-    List<String> getTags();
+    List<String> getTags(@Param(value = "type") String type);
 
-    List<String> getUSTags();
+    List<String> getUSTags(@Param(value = "type") String type);
 
-    List<LvYou> selectByUSTitleKey(String tagName);
+    List<LvYou> selectByUSTitleKey(String tagName,@Param(value = "type") String type);
 
-    List<LvYou> selectByTag2(@Param(value = "searchKey") String searchKey);
+    List<LvYou> selectByTag2(@Param(value = "searchKey") String searchKey,@Param(value = "type") String type);
 
-    List<LvYou> selectByUSTag2(@Param(value = "searchKey") String searchKey);
+    List<LvYou> selectByUSTag2(@Param(value = "searchKey") String searchKey,@Param(value = "type") String type);
 
-    List<String> getUSTags2();
+    List<String> getUSTags2(@Param(value = "type") String type);
 
-    List<String> getTags2();
+    List<String> getTags2(@Param(value = "type") String type);
 
     List<LvYou> selectallByCategory(@Param(value = "CATEGORY") String CATEGORY);
 }

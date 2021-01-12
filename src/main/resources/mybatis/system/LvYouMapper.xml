@@ -127,6 +127,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <select id="selectAll" resultMap="LvYouResult">
 
         <include refid="selectLvYouVo"/>
+        where 1=1
+        <if test="type != null  and type != ''"> and CATEGORY = #{type}</if>
+
+
 
 
     </select>
@@ -137,17 +141,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <include refid="selectLvYouVo"/>
 
         where CATEGORY = #{CATEGORY}
+        <if test="type != null  and type != ''"> and CATEGORY = #{type}</if>
 
 
     </select>
 
     <select id="selectByTitleKey" resultMap="LvYouResult">
-
         <include refid="selectLvYouVo"/>
-
-
-
         where location_name like (concat('%', #{searchKey}, '%'))
+        <if test="type != null  and type != ''"> and CATEGORY = #{type}</if>
 
 
 
@@ -158,11 +160,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
         <include refid="selectLvYouVo"/>
         where location_name_us like (concat('%', #{searchKey}, '%'))
+        <if test="type != null  and type != ''"> and CATEGORY = #{type}</if>
     </select>
 
     <select id="selectFive" resultMap="LvYouResult">
 
         <include refid="selectLvYouVo"/>
+        where 1=1
+        <if test="type != null  and type != ''"> and CATEGORY = #{type}</if>
         limit 5
 
 
@@ -171,20 +176,28 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
     <select id="getTags" resultType="java.lang.String">
 
-   select LOCATION_NAME from lv_you group by LOCATION_NAME
+   select LOCATION_NAME from lv_you
+   where 1=1
+        <if test="type != null  and type != ''"> and CATEGORY = #{type}</if>
+   group by LOCATION_NAME
+
 
 
     </select>
 
 
     <select id="getUSTags" resultType="java.lang.String">
-   select LOCATION_NAME_us from lv_you group by LOCATION_NAME_us
+   select LOCATION_NAME_us from lv_you
+   where 1=1
+        <if test="type != null  and type != ''"> and CATEGORY = #{type}</if>
+   group by LOCATION_NAME_us
     </select>
 
     <select id="selectByTag2" resultMap="LvYouResult">
 
         <include refid="selectLvYouVo"/>
         where TAG like (concat('%', #{searchKey}, '%'))
+        <if test="type != null  and type != ''"> and CATEGORY = #{type}</if>
 
 
     </select>
@@ -193,17 +206,24 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
         <include refid="selectLvYouVo"/>
         where TAG_US like (concat('%', #{searchKey}, '%'))
+        <if test="type != null  and type != ''"> and CATEGORY = #{type}</if>
 
 
     </select>
 
 
     <select id="getUSTags2" resultType="java.lang.String">
-      select TAG_US from lv_you group by TAG_US
+      select TAG_US from lv_you
+      where 1=1
+        <if test="type != null  and type != ''"> and CATEGORY = #{type}</if>
+      group by TAG_US
     </select>
 
     <select id="getTags2" resultType="java.lang.String">
-   select TAG from lv_you group by TAG
+   select TAG from lv_you
+   where 1=1
+        <if test="type != null  and type != ''"> and CATEGORY = #{type}</if>
+   group by TAG
     </select>
 
 </mapper>
