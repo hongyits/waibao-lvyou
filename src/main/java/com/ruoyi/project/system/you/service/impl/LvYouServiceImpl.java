@@ -3,6 +3,7 @@ package com.ruoyi.project.system.you.service.impl;
 import java.util.List;
 
 import lombok.extern.slf4j.Slf4j;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.ruoyi.project.system.you.mapper.LvYouMapper;
@@ -146,8 +147,8 @@ public class LvYouServiceImpl implements ILvYouService {
     }
 
     @Override
-    public List<LvYou> selectallByCategory(String CATEGORY) {
-        return lvYouMapper.selectallByCategory(CATEGORY);
+    public List<LvYou> selectallByCategory(String type) {
+        return lvYouMapper.selectallByCategory(type);
     }
 
 

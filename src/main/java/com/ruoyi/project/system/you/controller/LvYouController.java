@@ -102,18 +102,18 @@ public class LvYouController extends BaseController {
     public List<LvYou> listAll(ModelMap mmap) {
         List<LvYou> list = lvYouService.selectAll(null);
         //把对应的所有文件都搞成缓存
-        for (int i = 0; i < list.size(); i++) {
-            LvYou lvYou = list.get(i);
-            String fengmianUrl = lvYou.getFengmianUrl();
-            String pdfUrl = lvYou.getPdfUrl();
-            String pdfUrlUs = lvYou.getPdfUrlUs();
-
-            Cache<String, Object> cache = CacheUtils.getCache(fengmianUrl);
-            if (null == cache) {
-                String imgStr = Base64Utils.getImgStr(defaultBaseDir + File.separator + fengmianUrl);
-                cache.put(fengmianUrl, imgStr);
-            }
-        }
+//        for (int i = 0; i < list.size(); i++) {
+//            LvYou lvYou = list.get(i);
+//            String fengmianUrl = lvYou.getFengmianUrl();
+//            String pdfUrl = lvYou.getPdfUrl();
+//            String pdfUrlUs = lvYou.getPdfUrlUs();
+//
+//            Cache<String, Object> cache = CacheUtils.getCache(fengmianUrl);
+//            if (null == cache) {
+//                String imgStr = Base64Utils.getImgStr(defaultBaseDir + File.separator + fengmianUrl);
+//                cache.put(fengmianUrl, imgStr);
+//            }
+//        }
 
         mmap.put("lvyouInfo", list);
         return list;
@@ -214,6 +214,8 @@ public class LvYouController extends BaseController {
     public AjaxResult remove(String ids) {
         return toAjax(lvYouService.deleteLvYouByIds(ids));
     }
+
+
 
 
     @RequestMapping(value = "/showPdf", method = RequestMethod.GET)

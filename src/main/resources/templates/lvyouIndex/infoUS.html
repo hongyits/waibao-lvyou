@@ -19,10 +19,16 @@
 			<h2  class="h_none">Website navigation</h2>
 			<ul>
 				<li>
-					<a href="/index2?isUS=true">Index</a>
+					<a  href="/index2?isUS=true">Index</a>
 				</li>
 				<li>
-					<a  class="active"  href="/indexLvYouInfo?isUS=true">Travel</a>
+					<a  class="active" href="/indexLvYouInfo?type=info&isUS=true">Travel information</a>
+				</li>
+				<li>
+					<a  href="/indexLvYouInfo?type=jipiao&isUS=true">Air ticket information</a>
+				</li>
+				<li>
+					<a   href="/indexLvYouInfo?type=zuche&isUS=true">Car rental in Manila</a>
 				</li>
 
 				<li>
@@ -59,7 +65,7 @@
 
 		<figure th:each="LvYou :${list}" th:onclick="showPdf([[${LvYou.pdfUrl}]])">
 			<img th:src="@{${LvYou.fengmianUrl}}" alt="热门旅游">
-			<figcaption >
+			<figcaption th:onclick="goAnotherUrl([[${LvYou.tiaozhuanUrl}]])" >
 				<article>
 					<header>
 						<hgroup>
@@ -140,6 +146,11 @@
 		var data = prefix + "/showPdf?fileName=" + fileName;
 		var pdfURl = "/js/pdfjs/web/viewer.html?file=" + encodeURIComponent(data);
 		window.open(pdfURl);
+
+	}
+
+	function goAnotherUrl(url) {
+		window.location.href = url;
 
 	}
 

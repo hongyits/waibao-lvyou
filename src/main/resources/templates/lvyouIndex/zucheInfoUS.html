@@ -9,7 +9,7 @@
     <link th:href="@{/css/info.css}" rel="stylesheet">
     <link th:href="@{/css/index.css}" rel="stylesheet">
     <script th:src="@{/js/jquery.min.js}"></script>
-<!--    <script th:inline="javascript"> var ctx = [[@{/}]]; var captchaType = [[${captchaType}]];</script>-->
+    <script th:inline="javascript"> var ctx = [[@{/}]]; var captchaType = [[${captchaType}]];</script>
 
 </head>
 <body>
@@ -17,23 +17,23 @@
     <div class="hd_wrap">
         <h1 class="u-logo"><a href="index2.html"></a></h1>
         <nav class="m-nav">
-            <h2 class="h_none">网站导航</h2>
+            <h2 class="h_none">Website navigation</h2>
             <ul>
                 <li>
-                    <a href="/index2">首页</a>
+                    <a href="/index2">Index</a>
                 </li>
                 <li>
-                    <a  href="/indexLvYouInfo?type=info">旅游资讯</a>
+                    <a  href="/indexLvYouInfo?type=info&isUS=true">Travel</a>
                 </li>
                 <li>
-                    <a class="active" href="/indexLvYouInfo?type=jipiao">机票资讯</a>
+                    <a  href="/indexLvYouInfo?type=jipiao&isUS=true">Air ticket</a>
                 </li>
                 <li>
-                    <a   href="/indexLvYouInfo?type=zuche">马尼拉租车</a>
+                    <a  class="active"  href="/indexLvYouInfo?type=zuche&isUS=true">Car rental in Manila</a>
                 </li>
 
                 <li>
-                    <a href="/indexAbout">公司简介</a>
+                    <a href="/indexAbout?isUS=true">Company profile</a>
                 </li>
                 </li>
 
@@ -44,17 +44,17 @@
 <div class="m-hdLine">
     <div class="center">
         <hgroup>
-            <h2>机票资讯</h2>
-            <h3>介绍各种最新机票信息等</h3>
+            <h2>Car rental information</h2>
+            <h3>Introduce the latest car rental information</h3>
         </hgroup>
     </div>
 </div>
 
 <div class="g-mn">
     <div class="list infomation">
-        <div class="infor"  style=" overflow: auto;height: 100%;border-collapse: 0px">
-            <ul class="left" style="float: left" th:each="sb :${tags2}">
-                <li><a href="##" th:text="${sb}" th:onclick="searchTag([[${sb}]])">热门推荐</a></li>
+        <div class="infor" style=" overflow: auto;height: 100%;border-collapse: 0px">
+            <ul class="left" th:each="sb :${tags2}">
+                <li><a href="##" th:text="${sb}" th:onclick="searchTag([[${sb}]])">Popular</a></li>
             </ul>
             <!--			<ul class="right">-->
             <!--				<li><a class="selected" href="##">推荐</a></li>-->
@@ -106,7 +106,7 @@
         <!--		</figure>-->
 
 
-        <div class="more" th:if="${showMoreFlag}"><a onclick="showMore()">加载更多...</a></div>
+        <div class="more" th:if="${showMoreFlag}"><a onclick="showMore()">shoe more...</a></div>
 
     </div>
 
@@ -114,7 +114,7 @@
     <aside class="m-sidebar">
 
         <div class="recommend content">
-            <h2>机票推荐<h2>
+            <h2>租车推荐</h2>
             <div class="tag">
                 <ul th:each="sb :${tags}">
                     <li><a href="###" th:text="${sb}" th:onclick="searchTag([[${sb}]])">曼谷(12)</a></li>
@@ -135,10 +135,13 @@
 
     function searchTag(tagName) {
         // var prefix = ctx + "system/you/indexLvYouInfo?needMore=123";
-        window.location.href = "indexLvYouInfo?type=jipiao&tagName=" + tagName;
+        window.location.href = "indexLvYouInfo?tagName=" + tagName;
     }
 
-
+    function searchTag(tagName2) {
+        // var prefix = ctx + "system/you/indexLvYouInfo?needMore=123";
+        window.location.href = "indexLvYouInfo?type=zuche&tagName2=" + tagName2;
+    }
 
     function showPdf(fileName) {
         var prefix = ctx + "system/you";

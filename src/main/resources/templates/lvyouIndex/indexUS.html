@@ -20,11 +20,18 @@
             <h2 class="h_none">Website navigation</h2>
             <ul>
                 <li>
-                    <a class="active" href="/index2??isUS=true">Index</a>
+                    <a class="active" href="/index2">Index</a>
                 </li>
                 <li>
-                    <a href="/indexLvYouInfo?isUS=true">Travel</a>
+                    <a  href="/indexLvYouInfo?type=info&isUS=true">Travel</a>
                 </li>
+                <li>
+                    <a  href="/indexLvYouInfo?type=jipiao&isUS=true">Air ticket</a>
+                </li>
+                <li>
+                    <a   href="/indexLvYouInfo?type=zuche&isUS=true">Car rental in Manila</a>
+                </li>
+
                 <li>
                     <a href="/indexAbout?isUS=true">Company profile</a>
                 </li>
@@ -51,7 +58,7 @@
 
             <img th:src="@{${LvYou.fengmianUrl}}" th:onclick="showPdf([[${LvYou.pdfUrl}]])" alt="热门旅游">
 
-            <figcaption th:onclick="sowPdf([[${LvYou.pdfUrl}]])">
+            <figcaption th:onclick="goAnotherUrl([[${LvYou.tiaozhuanUrl}]])"  ">
                 <strong class="title" th:text="${LvYou.titleUs}"></strong>
                 <div class="info" th:onclick="showPdf([[${LvYou.pdfUrl}]])">
                     <span class="price">₱<strong th:text="${LvYou.PRICE}">2864</strong> at least</span>
@@ -110,6 +117,11 @@
         var data = prefix + "/showPdf?fileName=" + fileName;
         var pdfURl = "/js/pdfjs/web/viewer.html?file=" + encodeURIComponent(data);
         window.open(pdfURl);
+
+    }
+
+    function goAnotherUrl(url) {
+        window.location.href = url;
 
     }
 

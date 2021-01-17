@@ -17,23 +17,23 @@
     <div class="hd_wrap">
         <h1 class="u-logo"><a href="index2.html"></a></h1>
         <nav class="m-nav">
-            <h2 class="h_none">网站导航</h2>
+            <h2 class="h_none">Guide</h2>
             <ul>
                 <li>
-                    <a href="/index2">首页</a>
+                    <a href="/index2">Index</a>
                 </li>
                 <li>
-                    <a  href="/indexLvYouInfo?type=info">旅游资讯</a>
+                    <a  href="/indexLvYouInfo?type=info&isUS=true">Travel</a>
                 </li>
                 <li>
-                    <a class="active" href="/indexLvYouInfo?type=jipiao">机票资讯</a>
+                    <a class="active" href="/indexLvYouInfo?type=jipiao&isUS=true">Air ticket</a>
                 </li>
                 <li>
-                    <a   href="/indexLvYouInfo?type=zuche">马尼拉租车</a>
+                    <a   href="/indexLvYouInfo?type=zuche&isUS=true">Car rental in Manila</a>
                 </li>
 
                 <li>
-                    <a href="/indexAbout">公司简介</a>
+                    <a href="/indexAbout?isUS=true">Company profile</a>
                 </li>
                 </li>
 
@@ -44,8 +44,8 @@
 <div class="m-hdLine">
     <div class="center">
         <hgroup>
-            <h2>机票资讯</h2>
-            <h3>介绍各种最新机票信息等</h3>
+            <h2>Air ticket information</h2>
+            <h3>Introduce the latest ticket information, etc</h3>
         </hgroup>
     </div>
 </div>
@@ -106,7 +106,7 @@
         <!--		</figure>-->
 
 
-        <div class="more" th:if="${showMoreFlag}"><a onclick="showMore()">加载更多...</a></div>
+        <div class="more" th:if="${showMoreFlag}"><a onclick="showMore()">show more...</a></div>
 
     </div>
 
@@ -133,12 +133,11 @@
         window.location.href = "indexLvYouInfo?needMore=123";
     }
 
-    function searchTag(tagName) {
+
+    function searchTag(tagName2) {
         // var prefix = ctx + "system/you/indexLvYouInfo?needMore=123";
-        window.location.href = "indexLvYouInfo?type=jipiao&tagName=" + tagName;
+        window.location.href = "indexLvYouInfo?type=jipiao&tagName2=" + tagName2;
     }
-
-
 
     function showPdf(fileName) {
         var prefix = ctx + "system/you";

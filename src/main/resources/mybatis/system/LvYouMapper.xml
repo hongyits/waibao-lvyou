@@ -24,7 +24,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </resultMap>
 
     <sql id="selectLvYouVo">
-        select LVYOU_ID, LVYOU_DESC, PRICE, FENGMIAN_URL, PDF_URL, CRT_DATETIME, TITLE, LOCATION_NAME, LVYOU_DESC_US, PDF_URL_US, TITLE_US, LOCATION_NAME_US,TAG,TAG_US from lv_you
+        select LVYOU_ID, LVYOU_DESC, PRICE, FENGMIAN_URL, PDF_URL, CRT_DATETIME, TITLE, LOCATION_NAME, LVYOU_DESC_US, PDF_URL_US, TITLE_US, LOCATION_NAME_US,TAG,TAG_US,CATEGORY,TIAOZHUAN_URL from lv_you
     </sql>
 
     <select id="selectLvYouList" parameterType="com.ruoyi.project.system.you.domain.LvYou" resultMap="LvYouResult">
@@ -140,7 +140,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
         <include refid="selectLvYouVo"/>
 
-        where CATEGORY = #{CATEGORY}
+        where CATEGORY = #{type}
         <if test="type != null  and type != ''"> and CATEGORY = #{type}</if>
 
 

@@ -17,16 +17,14 @@ import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import com.ruoyi.common.utils.ServletUtils;
 import com.ruoyi.common.utils.StringUtils;
 import com.ruoyi.framework.web.controller.BaseController;
 import com.ruoyi.framework.web.domain.AjaxResult;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -56,17 +54,18 @@ public class LoginController extends BaseController {
 
     @GetMapping("/index2")
     public String index2(HttpServletRequest request, HttpServletResponse response, ModelMap mmap, @RequestParam(value = "isUS", required = false) String isUS, @RequestParam(value = "type", required = false) String type) {
-        List<LvYou> list = lvYouService.selectAll(LvyouCategotyEnum.INFO.getCode());
+        List<LvYou> list = lvYouService.selectAll(null);
 
         mmap.put("lvyouInfo", list);
         if (StringUtils.isNotEmpty(isUS)) {
-            return "lvyouIndex/ind¡exUS";
+            return "lvyouIndex/indexUS";
 
         } else {
             return "lvyouIndex/index";
 
         }
     }
+
 
 
     /**

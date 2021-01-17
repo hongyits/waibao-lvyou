@@ -54,37 +54,16 @@
         <p>国内旅游、国外旅游、自助旅游、自驾旅游、油轮签证、主题旅游等各种最新热门旅游推荐</p>
     </section>
 
-    <!--    <div>-->
-    <!--        撒打算的-->
-    <!--        <iframe id="haha" width="100%" height="100%"></iframe>-->
-
-    <!--    </div>-->
-
         <figure  th:each="LvYou :${lvyouInfo}">
-
-            <img th:src="@{${LvYou.fengmianUrl}}" th:onclick="showPdf([[${LvYou.pdfUrl}]])" alt="热门旅游">
-<!--            <img src="/Users/huanghongyuan/IdeaProjects/waibao-lvyou/uploadPath/avatar/4a4de563-1e2c-4456-928b-d05b5f2cc7d2suolong.jpg" th:onclick="showPdf([[${LvYou.pdfUrl}]])" alt="热门旅游">-->
-
-            <figcaption th:onclick="sowPdf([[${LvYou.pdfUrl}]])">
+            <img th:src="@{${LvYou.fengmianUrl}}" th:onclick="showPdf([[${LvYou.pdfUrl}]])" alt="we">
+            <figcaption  th:onclick="goAnotherUrl([[${LvYou.tiaozhuanUrl}]])"  >
                 <strong class="title" th:text="${LvYou.TITLE}"></strong>
-                <div class="info" th:onclick="showPdf([[${LvYou.pdfUrl}]])">
+                <div class="info" >
                     <span class="price">₱ <strong th:text="${LvYou.PRICE}">2864</strong> 起</span>
                 </div>
             </figcaption>
         </figure>
 
-
-    <!--	<figure>-->
-    <!--		<img src="img/tour2.jpg" alt="热门旅游">-->
-    <!--		<figcaption>-->
-    <!--			<strong class="title">&lt;马尔代夫双鱼岛Olhuveli4晚6日自助游&gt;</strong> 上海出发，机+酒 包含:早晚餐+快艇-->
-    <!--			<div class="info">-->
-    <!--				<em class="sat">满意度 97%</em>-->
-    <!--				<span class="price">¥ <strong>8039</strong> 起</span>-->
-    <!--			</div>-->
-    <!--			<div class="type">出境长线</div>-->
-    <!--		</figcaption>-->
-    <!--	</figure>-->
 
 
 </div>
@@ -131,35 +110,19 @@
         var prefix = ctx + "system/you";
         window.location.href = ctx + "system/you/searchByList?searchKey=" + trimText;
     }
+
+
+    function showPdf(fileName) {
+        var prefix = ctx + "system/you";
         var data = prefix + "/showPdf?fileName=" + fileName;
-
-
-        function showPdf(fileName) {
-            var prefix = ctx + "system/you";
-
         var pdfURl = "/js/pdfjs/web/viewer.html?file=" + encodeURIComponent(data);
         window.open(pdfURl);
-        // $("#haha").attr("src",pdfURl); //显示方式2
 
-        // document.getElementById('_div_embed').src = 'showPdf.jhtml?path='+record.data.pdfpath;
-        // window.location.href = ctx + "system/you/showPdf?path=" + "123";
-        // $("#_embed").src = ctx + "/system/you/showPdf?path=" + "123";
-        // $.ajax({
-        //     cache: true,
-        //     type: "GET",
-        //     url: prefix + "/showPdf?fileName=" + "ddd",
-        //     async: false,
-        //     error: function (request) {
-        //         alert("fuck1");
-        //     },
-        //     success: function (data) {
-        // // var url = ctx + "system/you/showPdf?fileName=" + "123";;
-        // // var url = [[@{/converter/preview}]]+'?filePath='+filePath;
-        // // $("#handout_wrap_inner").empty();
-        // // $("#handout_wrap_inner").load(url);
+    }
 
-        //         }
-        //     });
+    function goAnotherUrl(url) {
+        window.location.href = url;
+
     }
 
 

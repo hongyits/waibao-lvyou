@@ -63,7 +63,7 @@
         <figure th:each="LvYou :${list}" th:onclick="showPdf([[${LvYou.pdfUrl}]])">
             <!--            <img src="img/tour2.jpg" alt="马尔代夫6日自助游" th:onclick="showPdf([[${LvYou.pdfUrl}]])">-->
             <img th:src="@{${LvYou.fengmianUrl}}" th:onclick="showPdf([[${LvYou.pdfUrl}]])" alt="热门旅游">
-            <figcaption >
+            <figcaption th:onclick="goAnotherUrl([[${LvYou.tiaozhuanUrl}]])" >
                     <article>
                         <header>
                             <hgroup>
@@ -138,16 +138,18 @@
         window.location.href = "indexLvYouInfo?tagName=" + tagName;
     }
 
-    function searchTag(tagName2) {
-        // var prefix = ctx + "system/you/indexLvYouInfo?needMore=123";
-        window.location.href = "indexLvYouInfo?tagName2=" + tagName2;
-    }
+
 
     function showPdf(fileName) {
         var prefix = ctx + "system/you";
         var data = prefix + "/showPdf?fileName=" + fileName;
         var pdfURl = "/js/pdfjs/web/viewer.html?file=" + encodeURIComponent(data);
         window.open(pdfURl);
+
+    }
+
+    function goAnotherUrl(url) {
+        window.location.href = url;
 
     }
 

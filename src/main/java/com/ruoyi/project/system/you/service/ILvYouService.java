@@ -43,7 +43,8 @@ public interface ILvYouService
      */
     public int updateLvYou(LvYou lvYou);
 
-    /**
+    /**uList(lvYou);
+     return getDataTable(list);
      * 批量删除旅游信息上传
      * 
      * @param ids 需要删除的数据ID
@@ -85,5 +86,5 @@ public interface ILvYouService
 
     List<String> getTags2(String type);
 
-    List<LvYou> selectallByCategory(String CATEGORY);
+    List<LvYou> selectallByCategory(String type);
 }
