@@ -58,9 +58,9 @@
 
             <img th:src="@{${LvYou.fengmianUrl}}" th:onclick="showPdf([[${LvYou.pdfUrl}]])" alt="热门旅游">
 
-            <figcaption th:onclick="goAnotherUrl([[${LvYou.tiaozhuanUrl}]])"  ">
+            <figcaption th:onclick="goAnotherUrl([[${LvYou.tiaozhuanUrl}]])">
                 <strong class="title" th:text="${LvYou.titleUs}"></strong>
-                <div class="info" th:onclick="showPdf([[${LvYou.pdfUrl}]])">
+                <div class="info" >
                     <span class="price">₱<strong th:text="${LvYou.PRICE}">2864</strong> at least</span>
                 </div>
             </figcaption>
