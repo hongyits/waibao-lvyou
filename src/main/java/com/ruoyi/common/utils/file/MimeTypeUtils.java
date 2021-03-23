@@ -27,17 +27,13 @@ public class MimeTypeUtils {
 
     public static final String[] VIDEO_EXTENSION = {"mp4", "avi", "rmvb"};
 
-    public static final String[] DEFAULT_ALLOWED_EXTENSION = {
-            // 图片
-            "bmp", "gif", "jpg", "jpeg", "png",
+    public static final String[] DEFAULT_ALLOWED_EXTENSION_PDF_DOC = {
             // word excel powerpoint
-            "doc", "docx", "xls", "xlsx", "ppt", "pptx", "html", "htm", "txt",
-            // 压缩文件
-            "rar", "zip", "gz", "bz2",
-            // 视频格式
-            "mp4", "avi", "rmvb",
-            // pdf
-            "pdf"};
+            "doc", "pdf","docx"};
+
+    public static final String[] DEFAULT_ALLOWED_EXTENSION_JPG = {
+            // 图片
+            "bmp", "gif", "jpg", "jpeg", "png"};
 
     public static String getExtension(String prefix) {
         switch (prefix) {

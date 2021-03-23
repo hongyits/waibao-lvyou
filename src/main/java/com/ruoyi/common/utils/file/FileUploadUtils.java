@@ -52,7 +52,7 @@ public class FileUploadUtils {
      */
     public static final String upload(MultipartFile file) throws IOException {
         try {
-            return upload(getDefaultBaseDir(), file, MimeTypeUtils.DEFAULT_ALLOWED_EXTENSION);
+            return upload(getDefaultBaseDir(), file, MimeTypeUtils.DEFAULT_ALLOWED_EXTENSION_JPG);
         } catch (Exception e) {
             throw new IOException(e.getMessage(), e);
         }
@@ -68,7 +68,7 @@ public class FileUploadUtils {
      */
     public static final String upload(String baseDir, MultipartFile file) throws IOException {
         try {
-            return upload(baseDir, file, MimeTypeUtils.DEFAULT_ALLOWED_EXTENSION);
+            return upload(baseDir, file, MimeTypeUtils.DEFAULT_ALLOWED_EXTENSION_JPG);
         } catch (Exception e) {
             throw new IOException(e.getMessage(), e);
         }
@@ -84,7 +84,7 @@ public class FileUploadUtils {
      */
     public static final String uploadPdf(String baseDir, MultipartFile file) throws IOException {
         try {
-            return uploadPdf(baseDir, file, MimeTypeUtils.DEFAULT_ALLOWED_EXTENSION);
+            return uploadPdf(baseDir, file, MimeTypeUtils.DEFAULT_ALLOWED_EXTENSION_PDF_DOC);
         } catch (Exception e) {
             throw new IOException(e.getMessage(), e);
         }
@@ -279,13 +279,17 @@ public class FileUploadUtils {
         return extension;
     }
 
-    public static String uploadFixed(String baseDir, MultipartFile file) throws IOException {
+    public static String uploadFixed(String baseDir, MultipartFile file) throws IOException, InvalidExtensionException {
         int fileNamelength = file.getOriginalFilename().length();
         if (fileNamelength > FileUploadUtils.DEFAULT_FILE_NAME_LENGTH) {
             throw new FileNameLengthLimitExceededException(FileUploadUtils.DEFAULT_FILE_NAME_LENGTH);
         }
 
+
+        assertAllowed(file, MimeTypeUtils.DEFAULT_ALLOWED_EXTENSION_JPG);
         String fileName = extractFilename(file);
+
+
 
         File desc = getAbsoluteFile(baseDir, fileName);
         String path = desc.getPath();

@@ -100,7 +100,7 @@ public class FileUtils extends org.apache.commons.io.FileUtils {
         }
 
         // 检查允许下载的文件规则
-        if (ArrayUtils.contains(MimeTypeUtils.DEFAULT_ALLOWED_EXTENSION, FileTypeUtils.getFileType(resource))) {
+        if (ArrayUtils.contains(MimeTypeUtils.DEFAULT_ALLOWED_EXTENSION_JPG, FileTypeUtils.getFileType(resource))) {
             return true;
         }
 

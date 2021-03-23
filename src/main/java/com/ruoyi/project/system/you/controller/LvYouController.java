@@ -7,6 +7,7 @@ import java.io.OutputStream;
 import java.util.Date;
 import java.util.List;
 
+import com.ruoyi.common.exception.file.InvalidExtensionException;
 import com.ruoyi.common.utils.CacheUtils;
 import com.ruoyi.common.utils.StringUtils;
 import com.ruoyi.common.utils.file.Base64Utils;
@@ -55,6 +56,7 @@ public class LvYouController extends BaseController {
     @Autowired
     private ILvYouService lvYouService;
 
+
     //默认上传地址
     private static String defaultBaseDir = RuoYiConfig.getProfile();
 
@@ -74,7 +76,7 @@ public class LvYouController extends BaseController {
 
     @RequestMapping(value = "/searchByList", method = RequestMethod.GET)
     public String searchByList(@RequestParam(value = "searchKey") String searchKey, HttpServletRequest request, ModelMap mmap) {
-        List<LvYou> list = lvYouService.selectByTitleKey(searchKey,null);
+        List<LvYou> list = lvYouService.selectByTitleKey(searchKey, null);
         mmap.put("lvyouInfo", list);
         return "lvyouIndex/index";
 
@@ -197,11 +199,11 @@ public class LvYouController extends BaseController {
             }
 
             return toAjax(returnRes);
-        } catch (IOException e) {
+        } catch (IOException | InvalidExtensionException e) {
             e.printStackTrace();
+            return AjaxResult.error(e.getMessage());
         }
 
-        return toAjax(0);
     }
 
     /**
@@ -216,8 +218,6 @@ public class LvYouController extends BaseController {
     }
 
 
-
-
     @RequestMapping(value = "/showPdf", method = RequestMethod.GET)
     public void showPdf(HttpServletRequest request, HttpServletResponse response, @RequestParam(value = "fileName") String fileName) {
         //PDF文件地址
@@ -226,6 +226,7 @@ public class LvYouController extends BaseController {
 //        File file = new File("/Users/huanghongyuan/IdeaProjects/waibao-lvyou/uploadPath/2.pdf");//test
         File file = new File(pdfUrl);
         boolean exists = file.exists();
+        response.setContentType("application/pdf");
         log.info("%s", exists);
         log.info("%s", file.getPath());
         if (file.exists()) {
